@@ -34,9 +34,9 @@
   right: 10px;
   top: 10px;
 }
-.card-category {
+.card-stars {
   position: absolute;
-  top: 10px;
+  top: 15px;
   left: 10px;
   font-size: 10px;
   text-transform: uppercase;
@@ -44,7 +44,8 @@
 .card-description {
   position: absolute;
   bottom: 10px;
-  left: 10px;
+  right: 10px;
+  text-align: right;
 }
 .card-description h2 {
   font-size: 24px;

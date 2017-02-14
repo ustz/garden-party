@@ -15,7 +15,7 @@ class GardensController < ApplicationController
     @garden = Garden.new(garden_params)
     @garden.user = current_user
     if @garden.save
-      redirect_to garden_path(@garden)
+      redirect_to edit_user_path(current_user)
     else
       render 'new'
     end

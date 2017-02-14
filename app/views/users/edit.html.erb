@@ -24,36 +24,22 @@
       </div>
       <div class="row">
 
-      <div class="col-xs-12 col-sm-6">
-          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
-            <div class="card-category">Popular</div>
-            <div class="card-description">
-              <h2>Some stuff</h2>
-              <p>Very cool stuff, useful and smart</p>
-            </div>
-            <img class="card-user avatar" src="user.jpg">
-            <a class="card-link" href="#" ></a>
-          </div>
-        </div>
-
         <% @user.gardens.each do |garden| %>
-        <div class="col-xs-12 col-sm-6">
-          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
-            <div class="card-category">
-              <i class="fa fa-star fa-lg star-on" aria-hidden="true"></i>
-              <i class="fa fa-star fa-lg star-on" aria-hidden="true"></i>
-              <i class="fa fa-star fa-lg star-on" aria-hidden="true"></i>
-              <i class="fa fa-star fa-lg star-on" aria-hidden="true"></i>
-              <i class="fa fa-star fa-lg star-on" aria-hidden="true"></i>
+          <div class="col-xs-12 col-sm-6">
+            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
+              <div class="card-stars">
+                <i class="fa fa-star fa-lg star-on" aria-hidden="true"></i>
+                <i class="fa fa-star fa-lg star-on" aria-hidden="true"></i>
+                <i class="fa fa-star fa-lg star-on" aria-hidden="true"></i>
+                <i class="fa fa-star fa-lg star-on" aria-hidden="true"></i>
+                <i class="fa fa-star fa-lg star-on" aria-hidden="true"></i>
+              </div>
+              <div class="card-description">
+                <h2><%= garden.title %></h2>
+                <p><%= garden.description %></p>
+              </div>
             </div>
-            <div class="card-description">
-              <h2>Some stuff</h2>
-              <p>Very cool stuff, useful and smart</p>
-            </div>
-            <img class="card-user avatar" src="user.jpg">
-            <a class="card-link" href="#" ></a>
           </div>
-        </div>
         <% end %>
 
         <div class="col-xs-12 col-sm-6">
