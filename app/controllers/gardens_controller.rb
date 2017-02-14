@@ -1,6 +1,21 @@
 class GardensController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
 
+	def new
+		@user = current_user
+		@garden = Garden.new
+	end
+
+	def create
+    @garden = Garden.new(garden_params)
+    @garden.user = current_user
+    if @garden.save!
+      redirect_to root_path
+    else
+      render 'new'
+    end
+  end
+
   def index
     @gardens = Garden.all
   # @gardens = Garden.where(user_id: current_user)
@@ -10,6 +25,6 @@ class GardensController < ApplicationController
 
   # Strong params
   def garden_params
-    Params.require(:garden).permit(:title, :description)
+    params.require(:garden).permit(:title, :description, :city, :address)
   end
 end
