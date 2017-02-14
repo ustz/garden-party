@@ -6,18 +6,27 @@
   <%= garden.title%>
   <%= garden.description%>
 
+  <ul>
   <% garden.bookings.each do |booking| %>
-    <%= booking.user_id %>
+    <li>
+      <%= booking.user %>
+      <%= booking.status %>
+      <%= booking.checkin_at %>
+      <%= booking.checkout_at %>
+    </li>
+  <% end %>
+  </ul>
+
+<% end %>
+
+<h2>My requests:</h2>
+<ul>
+  <% @user.bookings.each do |booking| %>
+  <li>
+    <%= booking.user%>
     <%= booking.status %>
     <%= booking.checkin_at %>
     <%= booking.checkout_at %>
   <% end %>
-<% end %>
-
-<h2>My requests:</h2>
-<% @user.bookings.each do |booking| %>
-  <%= booking.user_id %>
-  <%= booking.status %>
-  <%= booking.checkin_at %>
-  <%= booking.checkout_at %>
-<% end %>
+  </li>
+</ul>
