@@ -6,9 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Booking.destroy_all
 Garden.destroy_all
 User.destroy_all
-Booking.destroy_all
 
 u1 = User.new(email: "a1@gmail.com", password: "esjhejdrsdst")
 u2 = User.new(email: "a2@gmail.com", password: "erjdfhsdkjfhdt")
@@ -26,8 +26,8 @@ g2.save!
 g3.save!
 
 b1 = Booking.new(user: u1, garden: g1)
-b2 = Booking.new(user_id: u2, garden: g2)
-b3 = Booking.new(user_id: u3, garden: g3)
+b2 = Booking.new(user: u2, garden: g2)
+b3 = Booking.new(user: u3, garden: g3)
 b1.save!
 b2.save!
 b3.save!
