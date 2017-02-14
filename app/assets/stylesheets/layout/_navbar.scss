@@ -8,6 +8,10 @@
   padding: 0px 30px;
   align-items: center;
   justify-content: space-between;
+  &.homepage {
+    background:none;
+    box-shadow: none;
+  }
 }
 
 /* Optional class to fix the navbar on top */
@@ -21,7 +25,7 @@
 
 /* Navbar logo */
 .navbar-wagon-brand img {
-  width: 50px;
+  width: 100px;
 }
 
 /* Navbar right section (with form, links, button) */
