@@ -4,9 +4,19 @@ class GardensController < ApplicationController
 		@garden = Garden.new
 	end
 
-	def create
 
-	end
+
+	def create
+    @garden = Garden.new(garden_params)
+    @garden.user = current_user
+    if @garden.save!
+      redirect_to root_path
+    else
+      render 'new'
+    end
+  end
+
+
 
   def index
     @gardens = Garden.all
@@ -17,6 +27,6 @@ class GardensController < ApplicationController
 
   # Strong params
   def garden_params
-    Params.require(:garden).permit(:title, :description)
+    params.require(:garden).permit(:title, :description, :city, :address)
   end
 end
