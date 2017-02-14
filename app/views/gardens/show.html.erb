@@ -1,0 +1,25 @@
+<!-- <%= cl_image_tag @garden.photo_url, height: 300, width: 400, crop: :fill %>
+ -->
+
+<h1 class='text-center'><%= @garden.title %></h1>
+<div class="text-center">
+  <%=link_to "Edit garden", edit_garden_path(@garden), class:"btn btn-primary" %>
+</div>
+
+<div class='container'>
+	<div class="row">
+		<div class="col-xs-12 col-sm-6 col-md-4">
+		<% if @garden.photo_url %>
+			<%= cl_image_tag @garden.photo_url, height: 300, width: 400, crop: :fill %>
+		<% else %>
+			<%= image_tag 'http://placehold.it/400x300' %>
+		<% end %>
+		</div>
+	</div>
+	<h2><%= @garden.title %></h2>
+	<p>City: <%= @garden.city %></p>
+	<p>Address: <%= @garden.address %></p>
+	<p><%= @garden.description %></p>
+	<%=link_to "Book this garden", root_path, class:"btn btn-primary" %>
+</div>
+

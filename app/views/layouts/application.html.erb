@@ -13,6 +13,9 @@
   </head>
   <body>
     <%= render 'shared/flashes' %>
+    <% unless controller_name == 'pages' && action_name == 'home' %>
+    <%= render 'shared/navbar' %>
+    <% end %>
     <%= yield %>
     <%= javascript_include_tag 'application' %>
   </body>

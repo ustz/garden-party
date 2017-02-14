@@ -4,12 +4,9 @@ Rails.application.routes.draw do
 
   get 'dashboard' => "dashboards#dashboard"
 
-  resources :users, only: [:edit, :show] do
-    resources :gardens, only: [:new, :create]
-  end
-
-  resources :gardens, only: [:index, :edit, :show]
+  resources :users, only: [:edit, :show]
+  resources :gardens, only: [:index, :edit, :show, :new, :create]
   root to: 'pages#home'
-
+  resources :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
