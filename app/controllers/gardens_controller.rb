@@ -3,7 +3,7 @@ class GardensController < ApplicationController
 
   def index
     @gardens = Garden.all
-  # @gardens = Garden.where(user_id: current_user)
+  end
 
   def new
     @user = current_user
@@ -18,8 +18,6 @@ class GardensController < ApplicationController
     else
       render 'new'
     end
-  end
-
   end
 
   private
