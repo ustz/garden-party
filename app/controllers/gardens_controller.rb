@@ -24,10 +24,6 @@ class GardensController < ApplicationController
   def show
   end
 
-  def show
-    @garden = Garden.new
-  end
-
   private
 
   def set_garden

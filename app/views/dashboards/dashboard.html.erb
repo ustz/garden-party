@@ -2,28 +2,30 @@
 
 <h2>my gardens:</h2>
 <% current_user.gardens.each do |garden| %>
+<ul>
+  <li>
+    <%= garden.title%>
+    <%= garden.description%>
 
-  <%= garden.title%>
-  <%= garden.description%>
-
-  <ul>
-  <% garden.bookings.each do |booking| %>
-    <li>
-      <%= booking.user.first_name %>
-      <%= booking.status %>
-      <%= booking.checkin_at %>
-      <%= booking.checkout_at %>
-    </li>
-  <% end %>
-  </ul>
+    <ul>
+    <% garden.bookings.each do |booking| %>
+      <li>
+        <%= booking.user.email %>
+        <%= booking.status %>
+        <%= booking.checkin_at %>
+        <%= booking.checkout_at %>
+      </li>
+    <% end %>
+    </ul>
+  </li>
+</ul>
 
 <% end %>
-
 <h2>My requests:</h2>
 <ul>
   <% current_user.bookings.each do |booking| %>
   <li>
-    <%= booking.garden.user.first_name%>
+    <%= booking.garden.user.email%>
     <%= booking.status %>
     <%= booking.checkin_at %>
     <%= booking.checkout_at %>
