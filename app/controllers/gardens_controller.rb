@@ -1,14 +1,17 @@
 class GardensController < ApplicationController
-	before_action :set_garden, only: [:show]
+  skip_before_action :authenticate_user!, only: :index
+  before_action :set_garden, only: [:show]
 
   def new
-		@user = current_user
-		@garden = Garden.new
-	end
+    @user = current_user
+    @garden = Garden.new
+  end
 
+  def index
+    @gardens = Garden.all
+  end
 
-
-	def create
+  def create
     @garden = Garden.new(garden_params)
     @garden.user = current_user
     if @garden.save
@@ -17,14 +20,6 @@ class GardensController < ApplicationController
       render 'new'
     end
   end
-
-
-
-  def index
-    @gardens = Garden.all
-  # @gardens = Garden.where(user_id: current_user)
-  end
-
 
   def show
   end
