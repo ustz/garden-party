@@ -23,9 +23,7 @@
         <%= @user.gardens.each do |garden|%>
           <div class="col-xs-6">
             <div class="card">
-              <%= link_to "#" do %>
-                <%= cl_image_path garden.photo, default: "http://placehold.it/400" %>
-              <% end %>
+
             </div>
           <% end %>
         </div>
