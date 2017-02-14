@@ -1,0 +1,23 @@
+<h1>My dashboard</h1>
+
+<h2>my gardens:</h2>
+<% @user.gardens.each do |garden| %>
+
+  <%= garden.title%>
+  <%= garden.description%>
+
+  <% garden.bookings.each do |booking| %>
+    <%= booking.user_id %>
+    <%= booking.status %>
+    <%= booking.checkin_at %>
+    <%= booking.checkout_at %>
+  <% end %>
+<% end %>
+
+<h2>My requests:</h2>
+<% @user.bookings.each do |booking| %>
+  <%= booking.user_id %>
+  <%= booking.status %>
+  <%= booking.checkin_at %>
+  <%= booking.checkout_at %>
+<% end %>
