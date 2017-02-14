@@ -1,5 +1,6 @@
 class GardensController < ApplicationController
-	def new
+
+  def new
 		@user = current_user
 		@garden = Garden.new
 	end
