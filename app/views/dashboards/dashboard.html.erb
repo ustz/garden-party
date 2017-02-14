@@ -1,7 +1,7 @@
 <h1>My dashboard</h1>
 
 <h2>my gardens:</h2>
-<% @user.gardens.each do |garden| %>
+<% current_user.gardens.each do |garden| %>
 
   <%= garden.title%>
   <%= garden.description%>
@@ -9,7 +9,7 @@
   <ul>
   <% garden.bookings.each do |booking| %>
     <li>
-      <%= booking.user %>
+      <%= booking.user.first_name %>
       <%= booking.status %>
       <%= booking.checkin_at %>
       <%= booking.checkout_at %>
@@ -21,9 +21,9 @@
 
 <h2>My requests:</h2>
 <ul>
-  <% @user.bookings.each do |booking| %>
+  <% current_user.bookings.each do |booking| %>
   <li>
-    <%= booking.user%>
+    <%= booking.garden.user.first_name%>
     <%= booking.status %>
     <%= booking.checkin_at %>
     <%= booking.checkout_at %>
