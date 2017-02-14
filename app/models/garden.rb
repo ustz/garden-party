@@ -9,5 +9,4 @@ class Garden < ApplicationRecord
   validates :address, presence: true
   validates :city, presence: true
   validates :user_id, presence: true
-
 end
