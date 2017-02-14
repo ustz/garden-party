@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-4 col-xs-offset-4">
+    <div class="col-xs-4">
       <!-- <div class="form-container"> -->
         <div class="title">
-          <h1>Edit profile</h1>
+          <h1 style="margin: 12px 0;">Edit profile</h1>
           <%= link_to "Back", gardens_path, class: "btn btn-info" %>
         </div>
         <div class="edit-form">
@@ -16,6 +16,19 @@
             <%= f.submit class: 'btn btn-primary' %>
           <% end %>
         <!-- </div> -->
+      </div>
+    </div>
+    <div class="col-xs-8">
+      <div class="row">
+        <%= @user.gardens.each do |garden|%>
+          <div class="col-xs-6">
+            <div class="card">
+              <%= link_to "#" do %>
+                <%= cl_image_path garden.photo, default: "http://placehold.it/400" %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
