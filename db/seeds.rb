@@ -26,8 +26,8 @@ g2.save!
 g3.save!
 
 b1 = Booking.new(user: u1, garden: g1)
-b2 = Booking.new(user_id: u2, garden: g2)
-b3 = Booking.new(user_id: u3, garden: g3)
+b2 = Booking.new(user: u2, garden: g2)
+b3 = Booking.new(user: u3, garden: g3)
 b1.save!
 b2.save!
 b3.save!
