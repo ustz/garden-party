@@ -9,5 +9,5 @@ class Garden < ApplicationRecord
   validates :address, presence: true
   validates :city, presence: true
   validates :user_id, presence: true
-  mount_uploader :photo_url, PhotoUploader
+  mount_uploader :photo, PhotoUploader
 end

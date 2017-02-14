@@ -11,8 +11,8 @@ class GardensController < ApplicationController
 	def create
     @garden = Garden.new(garden_params)
     @garden.user = current_user
-    if @garden.save!
-      redirect_to root_path
+    if @garden.save
+      redirect_to garden_path(@garden)
     else
       render 'new'
     end
@@ -37,6 +37,6 @@ class GardensController < ApplicationController
 
   # Strong params
   def garden_params
-    params.require(:garden).permit(:title, :description, :city, :address, :photo_url, :photo_cache)
+    params.require(:garden).permit(:title, :description, :city, :address, :photo, :photo_cache)
   end
 end
