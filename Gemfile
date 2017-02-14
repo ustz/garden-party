@@ -7,6 +7,8 @@ gem 'pg'
 gem 'figaro'
 gem 'jbuilder', '~> 2.0'
 gem 'redis'
+gem 'devise'
+gem 'omniauth-facebook'
 
 gem 'sass-rails'
 gem 'jquery-rails'
@@ -16,7 +18,6 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
 
-gem 'devise'
 
 group :development, :test do
   gem 'binding_of_caller'
