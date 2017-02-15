@@ -1,6 +1,6 @@
 class GardensController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
-  before_action :set_garden, only: [:show]
+  before_action :set_garden, only: [:show, :edit, :update, :destroy]
 
   def new
     @user = current_user
@@ -22,6 +22,7 @@ class GardensController < ApplicationController
   end
 
   def show
+    @booking = Booking.new
   end
 
   private
@@ -33,5 +34,9 @@ class GardensController < ApplicationController
   # Strong params
   def garden_params
     params.require(:garden).permit(:title, :description, :city, :address, :photo, :photo_cache)
+  end
+
+  def set_garden
+    @garden = Garden.find(params[:id])
   end
 end
