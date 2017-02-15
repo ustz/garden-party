@@ -1,24 +1,24 @@
-<h1 class='text-center'><%= @garden.title %></h1>
-<div class="text-center">
-  <%=link_to "Back to list of homes", gardens_path, class:"btn btn-primary" %>
-</div>
+<div class="container" style='margin-bottom: 50px;'>
+  <div class="title">
+    <h1 style="margin: 12px 0;"> <%= @garden.title %></h1>
+    <%= link_to "Back", root_path, class: "btn btn-info" %>
+  </div>
 
-<div class='container'>
-	<div class="row">
-		<div class="col-xs-12 col-sm-8">
-			<% if @garden.photo_url %>
-				<%= cl_image_tag @garden.photo_url, height: 300, width: 400, crop: :fill %>
-			<% else %>
-				<%= image_tag 'http://placehold.it/400x300' %>
-			<% end %>
-			<h2><%= @garden.title %></h2>
-			<p>City: <%= @garden.city %></p>
-			<p>Address: <%= @garden.address %></p>
-			<p><%= @garden.description %></p>
-			<p>Capacity: <%= @garden.capacity %></p>
-			<p>Size: <%= @garden.size %></p>
-			<p>Price per hour: <%= @garden.price_per_hour %></p>
-		</div>
+  <div class='container'>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <% if @garden.photo_url %>
+        <%= cl_image_tag @garden.photo_url, height: 300, width: 400, crop: :fill %>
+        <% else %>
+        <%= image_tag 'http://placehold.it/400x300' %>
+        <% end %>
+
+        <p><strong>City:</strong> <%= @garden.city %></p>
+        <p><strong>Address: </strong><%= @garden.address %></p>
+        <p><%= @garden.description %></p>
+        <p><strong>Size: </strong><%= @garden.size %> m2</p>
+        <p><strong>Price per hour: </strong><%= @garden.price_per_hour %> euros</p>
+      </div>
 
 
     	<div class="col-xs-12 col-sm-4">
@@ -41,7 +41,7 @@
 
 
 
-
+<!-- calculates booking price dynamically -->
 <script type="text/javascript" >
 	window.onload = function() {
 		$(document).ready(function() {
@@ -57,10 +57,26 @@
 	}
 </script>
 
-<!-- 
-n = new Date($("#end").val())
-Wed Feb 22 2017 16:15:00 GMT+0100 (CET)
-n2 = new Date($("#start").val())
-Thu Feb 23 2017 16:15:00 GMT+0100 (CET)
-d = Math.abs(n - n2)
-86400000 -->
+<!-- end - price calculation -->
+
+
+<!-- adding a map -->
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+      var handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'map' } }, function() {
+        markers = handler.addMarkers(<%= raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        if (markers.length == 0) {
+          handler.getMap().setZoom(2);
+        } else if (markers.length == 1) {
+          handler.getMap().setZoom(14);
+        }
+      });
+    });
+  <% end %>
+<% end %>
+<!-- end map -->
+
