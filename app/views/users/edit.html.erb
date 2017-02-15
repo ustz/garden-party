@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs 12 col-sm-4">
+      <!-- <div class="form-container"> -->
+      <div class="title">
+        <h1 style="margin: 12px 0;">Profile</h1>
+      </div>
+      <div class="edit-form">
+        <%= simple_form_for(@user) do |f| %>
+        <%= f.error_notification %>
+        <%= f.input :first_name %>
+        <%= f.input :last_name %>
+        <%= f.input :city %>
+        <%= f.input :email %>
+        <%= f.submit class: 'btn btn-primary' %>
+        <% end %>
+        <!-- </div> -->
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-8">
+      <div class="title">
+        <h1 style="margin: 12px 0;">Gardens</h1>
+        <%= link_to "Back", gardens_path, class: "btn btn-info" %>
+      </div>
+      <div class="row">
+        <% @user.gardens.each do |garden| %>
+          <div class="col-xs-12 col-sm-6">
+            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path garden.photo unless garden.photo.blank? %>');">
+              <div class="card-stars">
+                <i class="fa fa-star fa-lg star-on" aria-hidden="true"></i>
+                <i class="fa fa-star fa-lg star-on" aria-hidden="true"></i>
+                <i class="fa fa-star fa-lg star-on" aria-hidden="true"></i>
+                <i class="fa fa-star fa-lg star-on" aria-hidden="true"></i>
+                <i class="fa fa-star fa-lg star-on" aria-hidden="true"></i>
+              </div>
+              <div class="card-description">
+                <h2><%= garden.title %></h2>
+                <p><%= garden.description %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="col-xs-12 col-sm-6">
+          <%= link_to new_garden_path(current_user) do %>
+          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
+            <div style="display: flex; align-items: center; width: 100%; height: 100%; justify-content: space-around;">
+              <h3 class="text-center" style="margin: 0">Add a garden</h3>
+            </div>
+          </div>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

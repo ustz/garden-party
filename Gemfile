@@ -18,6 +18,8 @@ gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
+gem 'carrierwave'
+gem 'cloudinary', '1.1.0'
 
 
 group :development, :test do
@@ -32,3 +34,6 @@ group :development, :test do
 end
 
 
+source "https://rails-assets.org" do
+  gem 'rails-assets-bootstrap-datepicker'
+end
