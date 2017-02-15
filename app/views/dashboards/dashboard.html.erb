@@ -1,47 +1,76 @@
-<h1>My dashboard</h1>
+<h1 class="test-center">My dashboard<strong></h1>
 
-<h2>my gardens:</h2>
+<h2 class="text-center">My gardens:<strong></h2>
+<div class='container'>
 <% current_user.gardens.each do |garden| %>
-<ul>
-  <li>
-    <div>
-      <p><%= garden.title %></p>
-      <p><%= garden.description %></p>
-      <p><%= garden.capacity %></p>
-      <p><%= garden.size %></p>
-      <p><%= garden.price_per_hour %></p>
-      <p>
-        <%= cl_image_tag(garden.photo,
-        width: 400, height: 300, crop: :thumb, gravity: :face) %>
-      </p>
+  <div class="product">
+    <div class='product-upvote'>
     </div>
-    <div>
-      <ul>
-      <% garden.bookings.each do |booking| %>
-        <li>
-          <%= booking.user.email %>
-          <%= booking.user.first_name %>
-          <%= booking.user.last_name %>
-          <%= booking.user.city %>
-          <%= booking.status %>
-          <%= booking.checkin_at %>
-          <%= booking.checkout_at %>
-        </li>
-      <% end %>
-      </ul>
+    <%= cl_image_tag garden.photo, class:"product-image hidden-xs" %>
+    <div class='product-body'>
+      <div>
+        <p><%= garden.title %></p>
+        <p><%= garden.description %></p>
+        <p><%= garden.capacity %></p>
+        <p><%= garden.size %></p>
+        <p><%= garden.price_per_hour %></p>
+      </div>
+      <div>
+        <ul>
+          <% garden.bookings.each do |booking| %>
+            <li>
+              <%= booking.user.email %>
+              <%= booking.user.first_name %>
+              <%= booking.user.last_name %>
+              <%= booking.user.city %>
+              <%= booking.status %>
+              <%= booking.checkin_at %>
+              <%= booking.checkout_at %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
-  </li>
-</ul>
-
+    <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
+      <li><a href=""><i class="fa fa-heart"></i></a></li>
+      <li><a href=""><i class="fa fa-share"></i></a></li>
+      <li><a href=""><i class="fa fa-star"></i></a></li>
+    </ul>
+  </div>
+ </div>
 <% end %>
-<h2>My requests:</h2>
-<ul>
-  <% current_user.bookings.each do |booking| %>
-  <li>
-    <%= booking.garden.user.email%>
-    <%= booking.status %>
-    <%= booking.checkin_at %>
-    <%= booking.checkout_at %>
-  <% end %>
-  </li>
-</ul>
+
+
+
+<h2 class="text-center">My bookings:</h2>
+<div class='container'>
+  <ul>
+    <% current_user.bookings.each do |booking| %>
+      <div class="product">
+        <div class='product-upvote'>
+        </div>
+        <%= cl_image_tag garden.photo, class:"product-image hidden-xs" %>
+        <div class='product-body'>
+          <li>
+            <%= booking.garden.user.last_name%>
+            <%= booking.garden.user.first_name%>
+            <%= booking.garden.user.city%>
+            <%= booking.garden.user.email%>
+            <%= booking.status %>
+            <%= booking.checkin_at %>
+            <%= booking.checkout_at %>
+          </li>
+        </div>
+        <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
+          <li><a href=""><i class="fa fa-heart"></i></a></li>
+          <li><a href=""><i class="fa fa-share"></i></a></li>
+          <li><a href=""><i class="fa fa-star"></i></a></li>
+        </ul>
+      </div>
+    <% end %>
+  </ul>
+</div>
+
+
+
+
