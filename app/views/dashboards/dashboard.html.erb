@@ -15,6 +15,7 @@
         <p><%= garden.size %></p>
         <p><%= garden.price_per_hour %></p>
       </div>
+
       <div>
           <% garden.bookings.each do |booking| %>
               <p><%= booking.user.email %></p>
