@@ -4,17 +4,19 @@
     <%= image_tag "logo.png" %>
   <% end %>
 
-  <!-- Right Navigation -->
-  <div class="navbar-wagon-right hidden-xs hidden-sm">
-
     <!-- Search form -->
+  <div class="search-nav">
     <form action="" class="navbar-wagon-search">
       <input type="text" class="navbar-wagon-search-input" placeholder="Search something">
       <button type="submit" class="navbar-wagon-search-btn">
         <i class="fa fa-search"></i>
       </button>
     </form>
+  </div>
+  <div class="navbar-wagon-right hidden-xs hidden-sm">
 
+
+  <!-- Right Navigation -->
     <!-- Different navigation if login or not -->
     <% if user_signed_in? %>
 
@@ -34,11 +36,6 @@
             <li>
               <%= link_to edit_user_path(current_user) do %>
                 <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to root_path do %>
-                <i class="fa fa-home"></i>  <%= t(".profile", default: "Home") %>
               <% end %>
             </li>
             <li>
