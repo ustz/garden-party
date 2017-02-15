@@ -21,6 +21,13 @@ gem 'autoprefixer-rails'
 gem 'carrierwave'
 gem 'cloudinary', '1.1.0'
 
+# gem files for Gmaps (display and autocomplete)
+gem 'geocoder'
+gem 'coffee-rails'
+gem 'gmaps4rails'
+source 'https://rails-assets.org' do
+  gem "rails-assets-underscore"
+end
 
 group :development, :test do
   gem 'binding_of_caller'
@@ -33,5 +40,12 @@ group :development, :test do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-gem 'momentjs-rails', '>= 2.9.0'
-gem 'rails-assets-bootstrap-datetimepicker-3', source: 'https://rails-assets.org'
+# GEM FOR DATEPICKER that cannot manage time
+ # source "https://rails-assets.org" do
+#   gem 'rails-assets-bootstrap-datepicker'
+# end
+
+# GEM FOR DATE TIME PICKER
+gem 'momentjs-rails', '~> 2.17', '>= 2.17'
+gem 'rails-assets-bootstrap-datetimepicker-3','~> 4.17', '>= 4.17'
+
