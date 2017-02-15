@@ -22,6 +22,15 @@ class GardensController < ApplicationController
   end
 
   def show
+    @garden = Garden.find(params[:id])
+    if @garden.latitude
+      @hash = Gmaps4rails.build_markers(@garden) do |garden, marker|
+        marker.lat garden.latitude
+        marker.lng garden.longitude
+      # marker.infowindow render_to_string(partial: "/flats/map_box", locals: { flat: flat })
+      end
+      # @garden_coordinates = { lat: @garden.latitude, lng: @garden.longitude }
+    end
     @booking = Booking.new
   end
 
@@ -33,7 +42,7 @@ class GardensController < ApplicationController
 
   # Strong params
   def garden_params
-    params.require(:garden).permit(:title, :description, :city, :address, :photo, :photo_cache)
+    params.require(:garden).permit(:title, :description, :city, :address, :capacity, :size, :price_per_hour, :f_bbq, :photo, :photo_cache)
   end
 
   def set_garden
