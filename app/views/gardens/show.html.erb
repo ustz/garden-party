@@ -20,6 +20,7 @@
         <p><strong>Price per hour: </strong><%= @garden.price_per_hour %> euros</p>
       </div>
 
+      <div id='map' style='width: auto; height: 300px;'></div>
 
     	<div class="col-xs-12 col-sm-4">
 			<h1>Create booking:</h1>
@@ -49,7 +50,7 @@
 				var start = new Date($("#start").val());
 				var end = new Date($("#end").val());
 				var nb_hours = (end - start)/(60 * 60 * 1000);
-				var total_price = nb_hours * <%= @garden.price_per_hour %>;
+				var total_price = nb_hours * (<%= @garden.price_per_hour %>)
 				$("#nb_hours").html(nb_hours);
 				$("#final_price").html(total_price);
 			});
