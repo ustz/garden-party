@@ -25,19 +25,21 @@
       <div class="row">
         <% @user.gardens.each do |garden| %>
           <div class="col-xs-12 col-sm-6">
-            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path garden.photo unless garden.photo.blank? %>');">
-              <div class="card-stars">
-                <i class="fa fa-star fa-lg star-on" aria-hidden="true"></i>
-                <i class="fa fa-star fa-lg star-on" aria-hidden="true"></i>
-                <i class="fa fa-star fa-lg star-on" aria-hidden="true"></i>
-                <i class="fa fa-star fa-lg star-on" aria-hidden="true"></i>
-                <i class="fa fa-star fa-lg star-on" aria-hidden="true"></i>
+            <%= link_to garden_path(garden) do %>
+              <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path garden.photo unless garden.photo.blank? %>');">
+                <div class="card-stars">
+                  <i class="fa fa-star fa-lg star-on" aria-hidden="true"></i>
+                  <i class="fa fa-star fa-lg star-on" aria-hidden="true"></i>
+                  <i class="fa fa-star fa-lg star-on" aria-hidden="true"></i>
+                  <i class="fa fa-star fa-lg star-on" aria-hidden="true"></i>
+                  <i class="fa fa-star fa-lg star-on" aria-hidden="true"></i>
+                </div>
+                <div class="card-description">
+                  <h2><%= garden.title %></h2>
+                  <p><%= garden.description %></p>
+                </div>
               </div>
-              <div class="card-description">
-                <h2><%= garden.title %></h2>
-                <p><%= garden.description %></p>
-              </div>
-            </div>
+            <% end %>
           </div>
         <% end %>
 
