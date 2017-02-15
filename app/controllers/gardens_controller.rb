@@ -1,10 +1,11 @@
 class GardensController < ApplicationController
-  skip_before_action :authenticate_user!, only: :index
+  skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_garden, only: [:show, :edit, :update, :destroy]
 
+
   def new
-    @user = current_user
     @garden = Garden.new
+
   end
 
   def index
@@ -12,7 +13,11 @@ class GardensController < ApplicationController
   end
 
   def create
+    size = garden_params[:size].to_i
+    price_per_hour = garden_params[:price_per_hour].to_i
     @garden = Garden.new(garden_params)
+    @garden.size = size
+    @garden.price_per_hour = price_per_hour
     @garden.user = current_user
     if @garden.save
       redirect_to edit_user_path(current_user)

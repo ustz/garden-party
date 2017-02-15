@@ -1,14 +1,13 @@
 <div class="container">
   <div class="title">
-
     <h1 style="margin: 12px 0;"> <%= @garden.title %></h1>
     <%= link_to "Back", root_path, class: "btn btn-info" %>
   </div>
 
   <div class='container'>
-  	<div class="row">
-  		<div class="col-xs-12 col-sm-8">
-  			<% if @garden.photo_url %>
+    <div class="row">
+      <div class="col-xs-12 col-sm-8">
+        <% if @garden.photo_url %>
         <%= cl_image_tag @garden.photo_url, height: 300, width: 400, crop: :fill %>
         <% else %>
         <%= image_tag 'http://placehold.it/400x300' %>
@@ -20,7 +19,6 @@
         <p><strong>Size: </strong><%= @garden.size %> m2</p>
         <p><strong>Price per hour: </strong><%= @garden.price_per_hour %> euros</p>
       </div>
-
 
       <div class="col-xs-12 col-sm-4">
       <!-- adding a map -->
