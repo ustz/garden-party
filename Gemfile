@@ -40,9 +40,12 @@ group :development, :test do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-source "https://rails-assets.org" do
-  gem 'rails-assets-bootstrap-datepicker'
-end
+# GEM FOR DATEPICKER that cannot manage time
+ # source "https://rails-assets.org" do
+#   gem 'rails-assets-bootstrap-datepicker'
+# end
 
-# gem 'momentjs-rails', '>= 2.9.0'
-# gem 'rails-assets-bootstrap-datetimepicker-3', source: 'https://rails-assets.org'
+# GEM FOR DATE TIME PICKER
+gem 'momentjs-rails', '~> 2.17', '>= 2.17'
+gem 'rails-assets-bootstrap-datetimepicker-3','~> 4.17', '>= 4.17'
+

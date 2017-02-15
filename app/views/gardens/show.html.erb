@@ -46,8 +46,8 @@
        <h1>Create booking:</h1>
        <%= simple_form_for [@garden, @booking] do |f| %>
        <%= f.error_notification %>
-       <%= f.input :checkin_at, as: :string, input_html: { class: "datepicker" }  %>
-       <%= f.input :checkout_at, as: :string, input_html: { class: "datepicker" } %>
+       <%= f.input :checkin_at, as: :string, input_html: { class: "datetimepicker" }  %>
+       <%= f.input :checkout_at, as: :string, input_html: { class: "datetimepicker" } %>
        <%= f.input :accepts, label: "I have read and agree to the Terms and Conditions ", as: :boolean, checked_value: true, unchecked_value: false %>
        <%= f.submit "Book this garden" %>
        <% end %>
