@@ -10,11 +10,19 @@
   color: #FFFFFF;
   position: relative;
   margin: 20px 10px;
+  text-decoration: none;
   transition: all 0.4s ease;
   &:hover {
     transform: scale(1.1);
   }
   &:link {
+
+  }
+}
+
+.no-text-deco {
+  text-decoration: none;
+  &:hover {
     text-decoration: none;
   }
 }
