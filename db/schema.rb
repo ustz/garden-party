@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170214230438) do
+ActiveRecord::Schema.define(version: 20170215120420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,11 +19,11 @@ ActiveRecord::Schema.define(version: 20170214230438) do
     t.string   "status"
     t.integer  "user_id"
     t.integer  "garden_id"
-    t.string   "checkin_at"
-    t.string   "checkout_at"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.boolean  "accepts"
+    t.datetime "checkin_at"
+    t.datetime "checkout_at"
     t.index ["garden_id"], name: "index_bookings_on_garden_id", using: :btree
     t.index ["user_id"], name: "index_bookings_on_user_id", using: :btree
   end
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20170214230438) do
     t.integer  "user_id"
     t.string   "title"
     t.string   "description"
-    t.integer  "capacity"
+    t.string   "capacity"
     t.integer  "size"
     t.integer  "price_per_hour"
     t.string   "photo"
