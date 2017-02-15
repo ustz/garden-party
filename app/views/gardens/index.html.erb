@@ -8,10 +8,9 @@ style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0
             <% @gardens.each do |garden| %>
               <li>
                 <div class="card-description">
-                  <h2><%= garden.title %></h2>
-                  <p>Very cool stuff, useful and smart</p>
+                  <h2><%= link_to garden.title, garden_path(garden), class: "card-link" %></h2>
+                  <p><%= garden.capacity %></p>
                 </div>
-            <%= link_to '', garden_path(garden), class: "card-link" %>
             </li>
           <% end %>
           </ul>
@@ -19,4 +18,3 @@ style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0
     </div>
   </div>
 </div>
-

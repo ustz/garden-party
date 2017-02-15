@@ -23,7 +23,6 @@
         <%= link_to "Back", gardens_path, class: "btn btn-info" %>
       </div>
       <div class="row">
-
         <% @user.gardens.each do |garden| %>
           <div class="col-xs-12 col-sm-6">
             <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path garden.photo unless garden.photo.blank? %>');">
