@@ -1,22 +1,20 @@
-<div class="navbar-wagon">
+<div class="navbar-wagon homepage">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
     <%= image_tag "logo.png" %>
   <% end %>
 
+  <!-- Right Navigation -->
+  <div class="navbar-wagon-right hidden-xs hidden-sm">
+
     <!-- Search form -->
-  <div class="search-nav">
-    <form action="" class="navbar-wagon-search">
+<!--     <form action="" class="navbar-wagon-search">
       <input type="text" class="navbar-wagon-search-input" placeholder="Search something">
       <button type="submit" class="navbar-wagon-search-btn">
         <i class="fa fa-search"></i>
       </button>
-    </form>
-  </div>
-  <div class="navbar-wagon-right hidden-xs hidden-sm">
+    </form> -->
 
-
-  <!-- Right Navigation -->
     <!-- Different navigation if login or not -->
     <% if user_signed_in? %>
 
@@ -38,6 +36,7 @@
                 <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
               <% end %>
             </li>
+            <li>
             <li>
               <%= link_to dashboard_path do %>
                 <i class="fa fa-tachometer"></i>  <%= t(".profile", default: "Dashboard") %>
