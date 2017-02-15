@@ -1,34 +1,67 @@
 .card {
-
+  background-color: #D8D8D8;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.50);
+  border-radius: 4px;
+  background-image: linear-gradient(-134deg, #A9A7A7 0%, rgba(0,0,0,0.39) 100%);
+  opacity: 0.55;
+  height: 175px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  background-size: cover !important;
+  color: #FFFFFF;
+  position: relative;
+  margin: 20px 10px;
+  transition: all 0.4s ease;
+  &:hover {
+    transform: scale(1.1);
+  }
+  &:link {
+    text-decoration: none;
+  }
 }
 
-/* Mask: */
-background: #D8D8D8;
-box-shadow: 0 1px 1px 0 rgba(0,0,0,0.50);
-border-radius: 4px;
-/* xtxmxskf2uq-michael-brooks-jr: */
-/* Rectangle 3: */
-opacity: 0.55;
-background-image: linear-gradient(-134deg, #A9A7A7 0%, rgba(0,0,0,0.39) 100%);
-
-
-
-/* Paris 10: */
-font-family: Nunito-Light;
-font-size: 36px;
-color: #FFFFFF;
-/* Wonderful cosy garde: */
-font-family: Nunito-Light;
-font-size: 28px;
-color: #FFFFFF;
-
 .star-on {
-  background: #FFF9A3;
-  border: 1px solid #979797;
+  color: #FFFF00;
 }
 
 .star-off {
   background: #D8D8D8;
-  border: 1px solid #979797;
+}
+
+.card-user {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.card-stars {
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+.card-description {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  text-align: right;
+}
+.card-description h2 {
+  font-size: 24px;
+}
+.card-description p {
+  font-size: 13px;
+  }
+.card-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  z-index:2;
+  background: black;
+  opacity: 0;
+}
+.card-link:hover{
+  opacity: 0.1;
 }
 
