@@ -1,19 +1,33 @@
-<div class="banner"
-style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('');">
-  <div class="banner-content">
-    <h1>Check it out and book a garden for your party </h1>
-      <div class="container">
-        <div>
-          <ul>
-            <% @gardens.each do |garden| %>
-              <li>
-                <div class="card-description">
-                  <h2><%= link_to garden.title, garden_path(garden), class: "card-link" %></h2>
-                  <p><%= garden.capacity %></p>
-                </div>
-            </li>
-          <% end %>
-          </ul>
+<div class="index-container">
+  <div class="container" style="margin-left: 5px; margin-right: 0;">
+    <div class="row">
+    <!-- Card -->
+      <div class="col-xs-12 col-sm-8">
+        <div class="row">
+          <% @gardens.each do |garden| %>
+          <div class="col-xs-12 col-sm-6">
+            <%= link_to garden_path(garden) do %>
+            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path garden.photo unless garden.photo.blank? %>');">
+              <div class="card-stars">
+                <i class="fa fa-star fa-lg star-on" aria-hidden="true"></i>
+                <i class="fa fa-star fa-lg star-on" aria-hidden="true"></i>
+                <i class="fa fa-star fa-lg star-on" aria-hidden="true"></i>
+                <i class="fa fa-star fa-lg star-on" aria-hidden="true"></i>
+                <i class="fa fa-star fa-lg star-on" aria-hidden="true"></i>
+              </div>
+              <div class="card-description">
+                <h2><%= garden.title %></h2>
+                <p><%= garden.description %></p>
+              </div>
+            </div>
+            <% end %>
+          </div>
+           <% end %>
+        </div>
+      </div>
+      <!-- Map -->
+      <div class="col-xs-12 col-sm-4">
+
       </div>
     </div>
   </div>
