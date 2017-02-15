@@ -1,6 +1,7 @@
 class GardensController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :set_garden, only: [:show]
+  before_action :set_garden, only: [:show, :edit, :update, :destroy]
+
 
   def new
     @garden = Garden.new
@@ -19,7 +20,7 @@ class GardensController < ApplicationController
     @garden.price_per_hour = price_per_hour
     @garden.user = current_user
     if @garden.save
-      redirect_to garden_path(@garden)
+      redirect_to edit_user_path(current_user)
     else
       render 'new'
     end
@@ -38,5 +39,9 @@ class GardensController < ApplicationController
   # Strong params
   def garden_params
     params.require(:garden).permit(:title, :description, :city, :address, :photo, :photo_cache, :size, :price_per_hour, :capacity, :f_bbq)
+  end
+
+  def set_garden
+    @garden = Garden.find(params[:id])
   end
 end
