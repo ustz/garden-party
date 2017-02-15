@@ -1,14 +1,12 @@
 class BookingsController < ApplicationController
 
-	def new
-		@user = current_user
-		@booking = Booking.new
-	end
-
-
 	def create
 		@garden = Garden.find(params[:garden_id])
 		@booking = Booking.new(booking_params)
+		checkin_at = DateTime.strptime(booking_params[:checkin_at], '%m/%d/%Y %l:%M %p')
+		@booking.checkin_at = checkin_at
+		checkout_at = DateTime.strptime(booking_params[:checkout_at], '%m/%d/%Y %l:%M %p')
+		@booking.checkout_at = checkout_at
 		@booking.garden = @garden
 	    @booking.user = current_user
 	    @booking.status = "pending"
