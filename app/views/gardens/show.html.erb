@@ -25,10 +25,11 @@
 			<h1>Create booking:</h1>
 			<%= simple_form_for [@garden, @booking] do |f| %>
 				<%= f.error_notification %>
-				<%= f.input :checkin_at, as: :string, input_html: { class: "datetimepicker" }  %>
-				<%= f.input :checkout_at, as: :string, input_html: { class: "datetimepicker" } %>
+				<%= f.input :checkin_at, as: :string, input_html: { class: "datetimepicker", id: "start" }  %>
+				<%= f.input :checkout_at, as: :string, input_html: { class: "datetimepicker", id: "end" } %>
 				<strong>Price per hour:</strong> <%= @garden.price_per_hour%> EUR <br>
-				<strong>Number of hours:</strong>  <%= '' %>
+				<strong>Number of hours:</strong>  <div id = "nb_hours"> hours </div>
+				<strong>Final price:</strong>  <div id = "final_price"> EUR </div>
 				<br>
 				<br>
 				<%= f.input :accepts, label: "I have read and agree to the Terms and Conditions ", as: :boolean, checked_value: true, unchecked_value: false %>
@@ -38,3 +39,28 @@
 	</div>
 </div>
 
+
+
+
+<script type="text/javascript" >
+	window.onload = function() {
+		$(document).ready(function() {
+			$("#end").on("dp.hide", function(e) {
+				var start = new Date($("#start").val());
+				var end = new Date($("#end").val());
+				var nb_hours = (end - start)/(60 * 60 * 1000);
+				var total_price = nb_hours * <%= @garden.price_per_hour %>;
+				$("#nb_hours").html(nb_hours);
+				$("#final_price").html(total_price);
+			});
+		});
+	}
+</script>
+
+<!-- 
+n = new Date($("#end").val())
+Wed Feb 22 2017 16:15:00 GMT+0100 (CET)
+n2 = new Date($("#start").val())
+Thu Feb 23 2017 16:15:00 GMT+0100 (CET)
+d = Math.abs(n - n2)
+86400000 -->
