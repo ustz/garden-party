@@ -1,6 +1,6 @@
 <h1 class='text-center'><%= @garden.title %></h1>
 <div class="text-center">
-  <%=link_to "Edit garden", root_path, class:"btn btn-primary" %>
+  <%=link_to "Back to list of homes", gardens_path, class:"btn btn-primary" %>
 </div>
 <div class='container'>
 	<div class="row">
@@ -19,12 +19,17 @@
 			<p>Price per hour: <%= @garden.price_per_hour %></p>
 		</div>
 
+
     	<div class="col-xs-12 col-sm-4">
 			<h1>Create booking:</h1>
 			<%= simple_form_for [@garden, @booking] do |f| %>
 				<%= f.error_notification %>
-				<%= f.input :checkin_at, as: :string, input_html: { class: "datepicker" }  %>
-				<%= f.input :checkout_at, as: :string, input_html: { class: "datepicker" } %>
+				<%= f.input :checkin_at, as: :string, input_html: { class: "datetimepicker" }  %>
+				<%= f.input :checkout_at, as: :string, input_html: { class: "datetimepicker" } %>
+				<strong>Price per hour:</strong> <%= @garden.price_per_hour%> EUR <br>
+				<strong>Number of hours:</strong>  <%= '' %>
+				<br>
+				<br>
 				<%= f.input :accepts, label: "I have read and agree to the Terms and Conditions ", as: :boolean, checked_value: true, unchecked_value: false %>
 				<%= f.submit "Book this garden" %>
       		<% end %>
