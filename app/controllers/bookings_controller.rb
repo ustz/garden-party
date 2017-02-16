@@ -52,13 +52,13 @@ class BookingsController < ApplicationController
     end
 
     private
-	# Strong params
-	def booking_params
-		params.require(:booking).permit(:checkin_at, :checkout_at, :accepts)
-	end
+  # Strong params
+  def booking_params
+    params.require(:booking).permit(:checkin_at, :checkout_at, :accepts)
+  end
 
-	def set_booking
-		@booking = Booking.find(params[:id])
-		@garden = Garden.find(params[:garden_id])
-	end
+  def set_booking
+    @booking = Booking.find(params[:id])
+    @garden = Garden.find(params[:garden_id])
+  end
 end
