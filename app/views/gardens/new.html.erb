@@ -5,7 +5,7 @@
       <%= simple_form_for(@garden) do |f|%>
         <%= f.error_notification %>
         <%= f.input :title, placeholder: "Magnificent garden in the heart of Latin Quarter"%>
-        <%= f.input :description, placeholder: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius, aut minima odit. Eaque nulla commodi, ea tenetur facere nostrum accusamus culpa, maiores perspiciatis quidem qui molestiae quae sint rem. Nisi."%>
+        <%= f.input :description, placeholder: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius, aut minima odit."%>
         <%= f.input :address, placeholder: "5 avenue Kléber"%>
         <%= f.input :city, placeholder: "Paris"%>
         <%= f.input :capacity, collection: ["Less than 10", "10 - 49", "50 - 100", "More than 100"] %>
