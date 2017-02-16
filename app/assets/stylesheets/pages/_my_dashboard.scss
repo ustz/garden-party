@@ -1,3 +1,43 @@
+
+.tabs {
+  background: #450C1B;
+  display: flex;
+  padding: 10px 10px 0 10px
+}
+.tabs a {
+  color: white;
+}
+.tabs a:hover {
+  cursor: pointer;
+  text-decoration: none;
+  opacity: 0.8;
+}
+.tabs h3 {
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 0;
+}
+.tabs p {
+  opacity: 0.5;
+  margin-bottom: 0;
+}
+.tab {
+  background: #380F2D;
+  flex: 0 0 30%;
+  text-align: center;
+  padding: 5px 0;
+}
+.tab:first-child {
+  border-radius: 10px 0 0 0;
+}
+.tab:last-child {
+  border-radius: 0 10px 0 0;
+}
+.tab.active {
+  background: white;
+  color: black;
+}
+
 .product {
   display: flex;
   align-items: center;
@@ -6,7 +46,6 @@
   transition: all 0.15s ease;
   background: #D5BED7
 }
-
 /* Body design */
 .product-body {
   flex: 1 1 auto;
@@ -21,14 +60,12 @@
   color: #999999;
   margin-bottom: 0;
 }
-
 /* Product image */
 .product-image {
   border-radius: 10px;
   margin-right: 20px;
   width: 175px;
 }
-
 /* Upvote design */
 .product-upvote {
   padding-right: 20px;
@@ -52,7 +89,6 @@
   border-radius: 2px;
   margin: auto;
 }
-
 /* Controls design */
 .product-controls {
   display: flex;
@@ -74,7 +110,6 @@
   transition: all 0.15s ease;
   border-color: transparent;
 }
-
 /* Hover effects */
 .product:hover {
   background: #f7f7fa;
