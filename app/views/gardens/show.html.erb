@@ -11,11 +11,12 @@
       <%= image_tag 'http://placehold.it/400x300', class: 'photo'%>
       <% end %>
 
-      <p><strong>City:</strong> <%= @garden.city %></p>
+      <p><strong>City: </strong> <%= @garden.city %></p>
       <p><strong>Address: </strong><%= @garden.address %></p>
-      <p><%= @garden.description %></p>
+      <p><strong>Description:</strong> <%= @garden.description %></p>
       <p><strong>Size: </strong><%= @garden.size %> m2</p>
       <p><strong>Price per hour: </strong><%= @garden.price_per_hour %> euros</p>
+      <p><strong>Features: </strong></p>
 
       <!-- end of col-xs-12 -->
     </div>
