@@ -1,4 +1,3 @@
-
 <% if @booking.status == "pending" %>
 	<h1 class="text-center">Thank you, <%= current_user.first_name %>!</h1>
 	<h3 class="text-center">Your booking at <strong><%= link_to @garden.title, garden_path(@garden) %></strong> for <%= @booking.checkin_at.strftime('%b %d, %Y') %> was successfully registered! You will receive a confirmation email at <%= current_user.email %> once the owner confirmes your request</h3>
