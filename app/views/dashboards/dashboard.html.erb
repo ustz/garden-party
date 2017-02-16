@@ -1,14 +1,14 @@
 <h1 class="text-center"> My dashboard</h1>
 <div class="tabs">
-  <a class="tab active" href="#">
+  <a class="tab active" href="#" id="my_request">
     <h3>My Requests</h3>
     <p>(Number of gardens)</p>
   </a>
-  <a class="tab" href="#">
+  <a class="tab" href="#" id="my_parties">
     <h3>My Parties</h3>
     <p>(Number of parties)</p>
   </a>
-  <a class="tab" href="#">
+  <a class="tab" href="#" id="my_reviews">
     <h3>My reviews</h3>
     <p>(Number of reviews)</p>
   </a>
@@ -22,10 +22,9 @@
           <div class="panel-heading">
             <div class="row">
               <div class="col col-xs-6">
-                <h3 class="panel-title">Request Heading</h3>
+                <h3 class="panel-title">Pending requests</h3>
               </div>
               <div class="col col-xs-6 text-right">
-                <button type="button" class="btn btn-sm btn-primary btn-create">Create New</button>
               </div>
             </div>
           </div>
@@ -39,34 +38,43 @@
                 <th>Check in</th>
                 <th>Check out</th>
                 <th>Price</th>
-                <td>Statut</td>
+                <td>Status</td>
               </tr>
             </thead>
             <tbody>
               <tr>
               <% current_user.gardens.each do |garden| %>
-                <% garden.bookings.each do |booking| %>
-                <% user = User.find(booking.user_id) %>
-                 <td><%= booking.id %></td>
-                 <td> <%= cl_image_tag garden.photo, class:"product-image hidden-xs" %> </td>
-                 <td><%= user.email %></td>
-                 <td><%= booking.checkin_at %></td>
-                 <td><%= booking.checkout_at %></td>
-                 <td> Price (euro) </td>
-                 <td align="center">
-                  <a class="btn btn-default"><em class="fa fa-thumbs-up"></em></a>
-                  <a class="btn btn-danger"><em class="fa fa-thumbs-down"></em></a>
-                </td>
-              </tr>
+              <% garden.bookings.each do |booking| %>
+              <% if booking.status == "pending" %>
+              <% user = User.find(booking.user_id) %>
+              <td><%= booking.id %></td>
+              <td> <%= cl_image_tag garden.photo, class:"product-image hidden-xs" %> </td>
+              <td><%= user.email %></td>
+              <td><%= booking.checkin_at.strftime("%A, %d %b %Y %l:%M %p") %></td>
+              <td><%= booking.checkout_at.strftime("%A, %d %b %Y %l:%M %p")%></td>
+              <td> € </td>
+              <td align="center">
+                <%= link_to accept_garden_booking_path(booking.garden, booking), method: :patch, class: "btn btn-success" do %>
+                <em class="fa fa-thumbs-up"></em>
+                <% end %>
+                <%= link_to reject_garden_booking_path(booking.garden, booking), method: :patch, class: "btn btn-danger" do %>
+                <em class="fa fa-thumbs-down"></em>
+                <% end %>
+              </td>
               <% end %>
-            <% end %>
-          </tbody>
-        </table>
+              <% end %>
+              <% end %>
+            </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
+  </div>
+</div>
 </div>  <!-- end of my request div -->
 
-<div class="my_parties_tab">
+<div class="my_parties_tab hidden">
   <div class="container">
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
@@ -74,10 +82,9 @@
           <div class="panel-heading">
             <div class="row">
               <div class="col col-xs-6">
-                <h3 class="panel-title">Parties Heading</h3>
+                <h3 class="panel-title">My confirmed bookings</h3>
               </div>
               <div class="col col-xs-6 text-right">
-                <button type="button" class="btn btn-sm btn-primary btn-create">Create New</button>
               </div>
             </div>
           </div>
@@ -91,34 +98,38 @@
                 <th>Check in</th>
                 <th>Check out</th>
                 <th>Price</th>
-                <td>Statut</td>
+                <td>Status</td>
               </tr>
             </thead>
             <tbody>
               <tr>
               <% current_user.gardens.each do |garden| %>
-                <% garden.bookings.each do |booking| %>
-                <% user = User.find(booking.user_id) %>
-                 <td><%= booking.id %></td>
-                 <td> <%= cl_image_tag garden.photo, class:"product-image hidden-xs" %> </td>
-                 <td><%= user.email %></td>
-                 <td><%= booking.checkin_at %></td>
-                 <td><%= booking.checkout_at %></td>
-                 <td> Price (euro) </td>
-                 <td align="center">
-                  <a class="btn btn-default"><em class="fa fa-thumbs-up"></em></a>
-                  <a class="btn btn-danger"><em class="fa fa-thumbs-down"></em></a>
-                </td>
-              </tr>
+              <% garden.bookings.each do |booking| %>
+              <% if booking.status == "confirmed" %>
+              <% user = User.find(booking.user_id) %>
+              <td><%= booking.id %></td>
+              <td> <%= cl_image_tag garden.photo, class:"product-image hidden-xs" %> </td>
+              <td><%= user.email %></td>
+              <td><%= booking.checkin_at.strftime("%A, %d %b %Y %l:%M %p") %></td>
+              <td><%= booking.checkout_at.strftime("%A, %d %b %Y %l:%M %p") %></td>
+              <td> € </td>
+              <td align="center">
+                <a class="btn btn-default"><em class="fa fa-check-square-o"></em></a>
+              </td>
               <% end %>
-            <% end %>
-          </tbody>
-        </table>
+              <% end %>
+              <% end %>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-</div> <!-- end of my parties div -->
+  </div>
+</div>
+</div>
 
-<div class="my_parties_tab">
+<div class="my_reviews_tab hidden">
   <div class="container">
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
@@ -126,10 +137,10 @@
           <div class="panel-heading">
             <div class="row">
               <div class="col col-xs-6">
-                <h3 class="panel-title">Parties Heading</h3>
+                <h3 class="panel-title">Reviews Heading</h3>
               </div>
               <div class="col col-xs-6 text-right">
-                <button type="button" class="btn btn-sm btn-primary btn-create">Create New</button>
+                <!-- <button type="button" class="btn btn-sm btn-primary btn-create">Create New</button> -->
               </div>
             </div>
           </div>
@@ -143,7 +154,7 @@
                 <th>Check in</th>
                 <th>Check out</th>
                 <th>Price</th>
-                <td>Statut</td>
+                <td>Status</td>
               </tr>
             </thead>
             <tbody>
@@ -154,9 +165,9 @@
                  <td><%= booking.id %></td>
                  <td> <%= cl_image_tag garden.photo, class:"product-image hidden-xs" %> </td>
                  <td><%= user.email %></td>
-                 <td><%= booking.checkin_at %></td>
-                 <td><%= booking.checkout_at %></td>
-                 <td> Price (euro) </td>
+                 <td><%= booking.checkin_at.strftime("%A, %d %b %Y %l:%M %p") %></td>
+                 <td><%= booking.checkout_at.strftime("%A, %d %b %Y %l:%M %p") %></td>
+                 <td> € </td>
                  <td align="center">
                   <a class="btn btn-default"><em class="fa fa-thumbs-up"></em></a>
                   <a class="btn btn-danger"><em class="fa fa-thumbs-down"></em></a>
@@ -164,8 +175,35 @@
               </tr>
               <% end %>
             <% end %>
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
+  </div>
 </div> <!-- end of my reviews div -->
+
+<script type="text/javascript">
+  window.onload = function() {
+    $(document).ready(function() {
+      $("#my_request").click(function() {
+        $("#my_request").addClass("active");
+        $(".my_request_tab").removeClass("hidden");
+        $(".my_parties_tab").addClass("hidden");
+        $(".my_reviews_tab").addClass("hidden");
+      });
+      $("#my_parties").click(function() {
+        $("#my_parties").addClass("active");
+        $(".my_parties_tab").removeClass("hidden");
+        $(".my_request_tab").addClass("hidden");
+        $(".my_reviews_tab").addClass("hidden");
+      });
+      $("#my_reviews").click(function() {
+        $("#my_reviews").addClass("active");
+        $(".my_reviews_tab").removeClass("hidden");
+        $(".my_parties_tab").addClass("hidden");
+        $(".my_request_tab").addClass("hidden");
+      });
+    });
+  }
+</script>
