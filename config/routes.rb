@@ -4,7 +4,13 @@ Rails.application.routes.draw do
   
   get 'dashboard' => "dashboards#dashboard"
   resources :gardens, only: [:index, :edit, :show, :new, :create] do
-  	resources :bookings, only: [:create, :show]
+  	resources :bookings, only: [:create, :show] do 
+  		member do
+	  		patch 'accept', to: "bookings#accept"
+	  		patch 'reject', to: "bookings#reject"
+	  	end
+  	end
+
   end
   root to: 'pages#home'
   resources :users
