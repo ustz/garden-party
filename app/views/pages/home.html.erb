@@ -3,13 +3,13 @@
   <div class="banner">
     <div class="banner-content">
       <h1>Garden Party</h1>
-      <p>One garden, one party</p>
+      <p>Searching the perfect place for your next party</p>
 
       <!-- Search Bar -->
       <div class="search-bar">
         <%= simple_form_for :search,  url: gardens_path , method: :get do |f| %>
-        <%= f.input :city, label: false, placeholder: 'Where ?', wrapper_html: { class: 'input-form city-search' } %>
-        <%= f.input :capacity, label: false, wrapper_html: { class: 'input-form capacity-search' }, collection: ["Less than 10", "10 - 49", "50 - 100", "More than 100"], prompt: 'Persons ?' %>
+        <%= f.input :city, label: false, placeholder: 'Find by city', wrapper_html: { class: 'input-form city-search' } %>
+        <%= f.input :capacity, label: false, wrapper_html: { class: 'input-form capacity-search' }, collection: ["Less than 10", "10 - 49", "50 - 100", "More than 100"], prompt: 'Nb. of guests' %>
         <%= f.submit "Search", class: 'btn btn-primary my-btn search-btn' %>
         <% end %>
       </div>
