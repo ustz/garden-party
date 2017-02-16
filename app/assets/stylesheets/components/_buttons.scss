@@ -1,0 +1,15 @@
+.principal-btn {
+  margin: 0;
+  padding: 0 25%;
+  border-radius: 3px;
+  line-height: 40px;
+  background-color: $light-purple;
+  color: white;
+  font-size: 16px;
+  border: 1px solid $light-purple;
+  transition: all 0.4s ease;
+}
+.principal-btn:hover {
+  color: $light-purple;
+  background-color: transparent;
+}
