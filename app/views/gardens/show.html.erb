@@ -2,7 +2,7 @@
   <div class="title">
     <h1 style="margin: 12px 0;"> <%= @garden.title %></h1>
     <%= link_to "Back", root_path, class: "btn btn-info" %>
-  </div>
+  </div> <!-- end of title -->
 
   <div class='container'>
     <div class="row">
@@ -18,10 +18,11 @@
         <p><%= @garden.description %></p>
         <p><strong>Size: </strong><%= @garden.size %> m2</p>
         <p><strong>Price per hour: </strong><%= @garden.price_per_hour %> euros</p>
-      </div>
+      </div> <!-- enf of col-xs-12 -->
 
       <div class="col-xs-12 col-sm-4">
-        <div id="map" style="width: auto; height: 200px"></div>
+        <div id="map" style="width: auto; height: 300px"></div>
+        <!-- end of map -->
         <h1>Create booking:</h1>
         <%= simple_form_for [@garden, @booking] do |f| %>
           <%= f.error_notification %>
@@ -37,8 +38,8 @@
         <% end %>
       </div><!-- end of col-xs-12 -->
     </div><!-- end of row -->
-  </div><!-- end of container -->
-</div><!-- end of container -->
+  </div><!-- end of 2nd container -->
+</div><!-- end of 1st container -->
 
 <!-- calculates booking price dynamically -->
 <script type="text/javascript" >
@@ -64,12 +65,12 @@
   <%= javascript_tag do %>
     $(document).ready(function() {
       var handler = Gmaps.build('Google');
-      handler.buildMap({ internal: { id: 'map' } }, function() {
+      handler.buildMap({ provider: { scrollwheel: false, zoomControl: false }, internal: { id: 'map' } }, function() {
         markers = handler.addMarkers(<%= raw @hash.to_json %>);
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
         if (markers.length == 0) {
-          handler.getMap().setZoom(2);
+          handler.getMap().setZoom(4);
         } else if (markers.length == 1) {
           handler.getMap().setZoom(14);
         }
