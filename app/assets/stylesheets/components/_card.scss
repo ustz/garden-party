@@ -32,6 +32,18 @@
   background: #D8D8D8;
 }
 
+.card-trash {
+  color: white;
+  font-size: 30px;
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  transition: all 0.4s ease;
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
 .card-user {
   position: absolute;
   right: 10px;
