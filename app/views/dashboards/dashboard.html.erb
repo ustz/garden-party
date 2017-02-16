@@ -13,53 +13,159 @@
     <p>(Number of reviews)</p>
   </a>
 </div><!-- end of tab #1 -->
-<div class="container">
-  <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-      <div class="panel panel-default panel-table">
-        <div class="panel-heading">
-          <div class="row">
-            <div class="col col-xs-6">
-              <h3 class="panel-title">Panel Heading</h3>
-            </div>
-            <div class="col col-xs-6 text-right">
-              <button type="button" class="btn btn-sm btn-primary btn-create">Create New</button>
+
+<div class="my_request_tab">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-default panel-table">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col col-xs-6">
+                <h3 class="panel-title">Request Heading</h3>
+              </div>
+              <div class="col col-xs-6 text-right">
+                <button type="button" class="btn btn-sm btn-primary btn-create">Create New</button>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="panel-body">
-         <table class="table table-striped table-bordered table-list">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Garden</th>
-              <th>User</th>
-              <th>Check in</th>
-              <th>Check out</th>
-              <th>Price</th>
-              <td>Statut</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-            <% current_user.gardens.each do |garden| %>
-              <% garden.bookings.each do |booking| %>
-              <% user = User.find(booking.user_id) %>
-               <td><%= booking.id %></td>
-               <td> <%= cl_image_tag garden.photo, class:"product-image hidden-xs" %> </td>
-               <td><%= user.email %></td>
-               <td><%= booking.checkin_at %></td>
-               <td><%= booking.checkout_at %></td>
-               <td> Price (euro) </td>
-               <td align="center">
-                <a class="btn btn-default"><em class="fa fa-thumbs-up"></em></a>
-                <a class="btn btn-danger"><em class="fa fa-thumbs-down"></em></a>
-              </td>
-            </tr>
+          <div class="panel-body">
+           <table class="table table-striped table-bordered table-list">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Garden</th>
+                <th>User</th>
+                <th>Check in</th>
+                <th>Check out</th>
+                <th>Price</th>
+                <td>Statut</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+              <% current_user.gardens.each do |garden| %>
+                <% garden.bookings.each do |booking| %>
+                <% user = User.find(booking.user_id) %>
+                 <td><%= booking.id %></td>
+                 <td> <%= cl_image_tag garden.photo, class:"product-image hidden-xs" %> </td>
+                 <td><%= user.email %></td>
+                 <td><%= booking.checkin_at %></td>
+                 <td><%= booking.checkout_at %></td>
+                 <td> Price (euro) </td>
+                 <td align="center">
+                  <a class="btn btn-default"><em class="fa fa-thumbs-up"></em></a>
+                  <a class="btn btn-danger"><em class="fa fa-thumbs-down"></em></a>
+                </td>
+              </tr>
+              <% end %>
             <% end %>
-          <% end %>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
+</div>  <!-- end of my request div -->
 
+<div class="my_parties_tab">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-default panel-table">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col col-xs-6">
+                <h3 class="panel-title">Parties Heading</h3>
+              </div>
+              <div class="col col-xs-6 text-right">
+                <button type="button" class="btn btn-sm btn-primary btn-create">Create New</button>
+              </div>
+            </div>
+          </div>
+          <div class="panel-body">
+           <table class="table table-striped table-bordered table-list">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Garden</th>
+                <th>User</th>
+                <th>Check in</th>
+                <th>Check out</th>
+                <th>Price</th>
+                <td>Statut</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+              <% current_user.gardens.each do |garden| %>
+                <% garden.bookings.each do |booking| %>
+                <% user = User.find(booking.user_id) %>
+                 <td><%= booking.id %></td>
+                 <td> <%= cl_image_tag garden.photo, class:"product-image hidden-xs" %> </td>
+                 <td><%= user.email %></td>
+                 <td><%= booking.checkin_at %></td>
+                 <td><%= booking.checkout_at %></td>
+                 <td> Price (euro) </td>
+                 <td align="center">
+                  <a class="btn btn-default"><em class="fa fa-thumbs-up"></em></a>
+                  <a class="btn btn-danger"><em class="fa fa-thumbs-down"></em></a>
+                </td>
+              </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div> <!-- end of my parties div -->
+
+<div class="my_parties_tab">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-default panel-table">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col col-xs-6">
+                <h3 class="panel-title">Parties Heading</h3>
+              </div>
+              <div class="col col-xs-6 text-right">
+                <button type="button" class="btn btn-sm btn-primary btn-create">Create New</button>
+              </div>
+            </div>
+          </div>
+          <div class="panel-body">
+           <table class="table table-striped table-bordered table-list">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Garden</th>
+                <th>User</th>
+                <th>Check in</th>
+                <th>Check out</th>
+                <th>Price</th>
+                <td>Statut</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+              <% current_user.gardens.each do |garden| %>
+                <% garden.bookings.each do |booking| %>
+                <% user = User.find(booking.user_id) %>
+                 <td><%= booking.id %></td>
+                 <td> <%= cl_image_tag garden.photo, class:"product-image hidden-xs" %> </td>
+                 <td><%= user.email %></td>
+                 <td><%= booking.checkin_at %></td>
+                 <td><%= booking.checkout_at %></td>
+                 <td> Price (euro) </td>
+                 <td align="center">
+                  <a class="btn btn-default"><em class="fa fa-thumbs-up"></em></a>
+                  <a class="btn btn-danger"><em class="fa fa-thumbs-down"></em></a>
+                </td>
+              </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div> <!-- end of my reviews div -->
