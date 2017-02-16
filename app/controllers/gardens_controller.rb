@@ -47,6 +47,12 @@ class GardensController < ApplicationController
     @booking = Booking.new
   end
 
+
+  def destroy
+    @garden.delete
+    redirect_to edit_user_path
+  end
+
   private
 
   def set_garden
