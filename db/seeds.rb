@@ -10,24 +10,26 @@ Booking.destroy_all
 Garden.destroy_all
 User.destroy_all
 
-u1 = User.new(email: "a1@gmail.com", password: "esjhejdrsdst")
-u2 = User.new(email: "a2@gmail.com", password: "erjdfhsdkjfhdt")
-u3 = User.new(email: "a3@gmail.com", password: "erlehqwoieyt")
+u1 = User.new(email: "a1@gmail.com", password: "esjhejdrsdst", first_name: "Bob", last_name: 'Robert')
+u2 = User.new(email: "a2@gmail.com", password: "erjdfhsdkjfhdt", first_name: "Aurelien", last_name: 'Billion')
+u3 = User.new(email: "a3@gmail.com", password: "erlehqwoieyt", first_name: "Edouard", last_name: 'Schultz')
 u1.save!
 u2.save!
 u3.save!
 
-g1 = Garden.new(title: "Amazing garden in center of Paris", description: "Lorem Hipster garden in center of Paris", address: "Rue du bac", city: "Paris", user: u1)
-g2 = Garden.new(title: "Superb Flat in London", description: "Lorem super text", address: "5th Avenue", city: "New York",user: u2)
-g3 = Garden.new(title: "Wonderful rooftop in NYC", description: "Obabbaa loop", address: "Street lane", city: "London", user: u3)
+g1 = Garden.new(title: "Amazing garden in center of Paris", description: "Lorem Hipster garden in center of Paris", address: "Rue du bac", city: "Paris", user: u1, photo: "image/upload/v1487239208/nffawrutplxuojd8cidf.jpg")
+g2 = Garden.new(title: "Superb Flat in London", description: "Lorem super text", address: "5th Avenue", city: "New York",user: u2, photo: "image/upload/v1487239208/nffawrutplxuojd8cidf.jpg")
+g3 = Garden.new(title: "Wonderful rooftop in NYC", description: "Obabbaa loop", address: "Street lane", city: "London", user: u3, photo: "image/upload/v1487239208/nffawrutplxuojd8cidf.jpg")
+g4 = Garden.new(title: "Wonderful rooftop in NYC", description: "Obabbaa loop", address: "Street lane", city: "Paris", user: u3, photo: "image/upload/v1487239208/nffawrutplxuojd8cidf.jpg")
 
 g1.save!
 g2.save!
 g3.save!
+g4.save!
 
-b1 = Booking.new(user: u1, garden: g1)
-b2 = Booking.new(user: u2, garden: g2)
-b3 = Booking.new(user: u3, garden: g3)
-b1.save!
-b2.save!
-b3.save!
+# b1 = Booking.new(user: u1, garden: g1)
+# b2 = Booking.new(user: u2, garden: g2)
+# b3 = Booking.new(user: u3, garden: g3)
+# b1.save!
+# b2.save!
+# b3.save!

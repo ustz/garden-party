@@ -9,7 +9,15 @@ class GardensController < ApplicationController
   end
 
   def index
-    @gardens = Garden.all
+    @gardens = Garden.where('city = ? AND capacity = ?', params[:search][:city], params[:search][:capacity])
+    @hash = Gmaps4rails.build_markers(@gardens) do |garden, marker|
+      if garden.latitude
+        marker.lat garden.latitude
+        marker.lng garden.longitude
+      # marker.infowindow render_to_string(partial: "/flats/map_box", locals: { flat: flat })
+      end
+      # @garden_coordinates = { lat: @garden.latitude, lng: @garden.longitude }
+    end
   end
 
   def create
