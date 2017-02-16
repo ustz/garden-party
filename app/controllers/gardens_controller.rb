@@ -9,7 +9,7 @@ class GardensController < ApplicationController
   end
 
   def index
-    @gardens = Garden.all
+    @gardens = Garden.where('city = ? AND capacity = ?', params[:search][:city], params[:search][:capacity])
   end
 
   def create
