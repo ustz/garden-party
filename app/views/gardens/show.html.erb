@@ -18,6 +18,8 @@
         <p><%= @garden.description %></p>
         <p><strong>Size: </strong><%= @garden.size %> m2</p>
         <p><strong>Price per hour: </strong><%= @garden.price_per_hour %> euros</p>
+
+      <!-- end of col-xs-12 -->
       </div>
 
       <div id='map' style='width: auto; height: 300px;'></div>
@@ -40,7 +42,26 @@
 	</div>
 </div>
 
-
+      <div class="col-xs-12 col-sm-4">
+        <div id="map" style="width: auto; height: 300px"></div>
+        <!-- end of map -->
+        <h1>Create booking:</h1>
+        <%= simple_form_for [@garden, @booking] do |f| %>
+          <%= f.error_notification %>
+          <%= f.input :checkin_at, as: :string, input_html: { class: "datetimepicker", id: "start" }  %>
+          <%= f.input :checkout_at, as: :string, input_html: { class: "datetimepicker", id: "end" } %>
+          <strong>Price per hour:</strong> <%= @garden.price_per_hour%> EUR <br>
+          <strong>Number of hours:</strong>  <div id = "nb_hours"> hours </div>
+          <strong>Final price:</strong>  <div id = "final_price"> EUR </div>
+          <br>
+          <br>
+          <%= f.input :accepts, label: "I have read and agree to the Terms and Conditions ", as: :boolean, checked_value: true, unchecked_value: false %>
+          <%= f.submit "Book this garden" %>
+        <% end %>
+      </div><!-- end of col-xs-12 -->
+    </div><!-- end of row -->
+  </div><!-- end of 2nd container -->
+</div><!-- end of 1st container -->
 
 <!-- calculates booking price dynamically -->
 <script type="text/javascript" >
@@ -66,12 +87,12 @@
   <%= javascript_tag do %>
     $(document).ready(function() {
       var handler = Gmaps.build('Google');
-      handler.buildMap({ internal: { id: 'map' } }, function() {
+      handler.buildMap({ provider: { scrollwheel: false, zoomControl: false }, internal: { id: 'map' } }, function() {
         markers = handler.addMarkers(<%= raw @hash.to_json %>);
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
         if (markers.length == 0) {
-          handler.getMap().setZoom(2);
+          handler.getMap().setZoom(4);
         } else if (markers.length == 1) {
           handler.getMap().setZoom(14);
         }
