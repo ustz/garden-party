@@ -1,57 +1,82 @@
-<div class="container">
+<div class="container show-container">
   <div class="title">
     <h1 style="margin: 12px 0;"> <%= @garden.title %></h1>
-    <%= link_to "Back", root_path, class: "btn btn-info" %>
+    <%= link_to "Back", :back, class: "btn btn-info" %>
   </div>
-
-  <div class='container'>
-    <div class="row">
-      <div class="col-xs-12 col-sm-8">
-        <% if @garden.photo_url %>
-        <%= cl_image_tag @garden.photo_url, height: 300, width: 400, crop: :fill %>
-        <% else %>
-        <%= image_tag 'http://placehold.it/400x300' %>
-        <% end %>
-
-        <p><strong>City:</strong> <%= @garden.city %></p>
-        <p><strong>Address: </strong><%= @garden.address %></p>
-        <p><%= @garden.description %></p>
-        <p><strong>Size: </strong><%= @garden.size %> m2</p>
-        <p><strong>Price per hour: </strong><%= @garden.price_per_hour %> euros</p>
-      </div>
-
-      <div class="col-xs-12 col-sm-4">
-      <!-- adding a map -->
-      <div id="map" style="width: 400px; height: 300px;">
-
-      <% content_for(:after_js) do %>
-        <%= javascript_tag do %>
-          $(document).ready(function() {
-            var handler = Gmaps.build('Google');
-            handler.buildMap({ internal: { id: 'map' } }, function() {
-              markers = handler.addMarkers(<%= raw @hash.to_json %>);
-              handler.bounds.extendWith(markers);
-              handler.fitMapToBounds();
-              if (markers.length == 0) {
-                handler.getMap().setZoom(2);
-              } else if (markers.length == 1) {
-                handler.getMap().setZoom(14);
-              }
-            });
-          });
-        <% end %>
+  <div class="row" style="margin-bottom: 20px;">
+    <div class="col-xs-12 col-sm-8">
+      <% if @garden.photo_url %>
+      <%= cl_image_tag @garden.photo_url, height: 300, width: 400, crop: :fill, class: 'photo' %>
+      <% else %>
+      <%= image_tag 'http://placehold.it/400x300', class: 'photo'%>
       <% end %>
-      <!-- end map -->
-      </div>
-       <h1>Create booking:</h1>
-       <%= simple_form_for [@garden, @booking] do |f| %>
-       <%= f.error_notification %>
-       <%= f.input :checkin_at, as: :string, input_html: { class: "datetimepicker" }  %>
-       <%= f.input :checkout_at, as: :string, input_html: { class: "datetimepicker" } %>
-       <%= f.input :accepts, label: "I have read and agree to the Terms and Conditions ", as: :boolean, checked_value: true, unchecked_value: false %>
-       <%= f.submit "Book this garden" %>
-       <% end %>
-     </div>
+
+      <p><strong>City: </strong> <%= @garden.city %></p>
+      <p><strong>Address: </strong><%= @garden.address %></p>
+      <p><strong>Description:</strong> <%= @garden.description %></p>
+      <p><strong>Size: </strong><%= @garden.size %> m2</p>
+      <p><strong>Price per hour: </strong><%= @garden.price_per_hour %> euros</p>
+      <p><strong>Features: </strong></p>
+
+      <!-- end of col-xs-12 -->
+    </div>
+
+
+    <div class="col-xs-12 col-sm-4 booking-form">
+    <h2>Create booking:</h2>
+     <%= simple_form_for [@garden, @booking] do |f| %>
+     <%= f.error_notification %>
+     <%= f.input :checkin_at, as: :string, input_html: { class: "datetimepicker", id: "start" }  %>
+     <%= f.input :checkout_at, as: :string, input_html: { class: "datetimepicker", id: "end" } %>
+     <strong>Price per hour:</strong> <%= @garden.price_per_hour%> EUR <br>
+     <strong>Number of hours:</strong>  <div id = "nb_hours"> hours </div>
+     <strong>Final price:</strong>  <div id = "final_price"> EUR </div>
+     <br>
+     <br>
+     <%= f.input :accepts, label: "I have read and agree to the Terms and Conditions ", as: :boolean, checked_value: true, unchecked_value: false %>
+     <%= f.submit "Book this garden", class: 'btn btn-primary'%>
+     <% end %>
    </div>
-  </div>
+ </div>
+ <div id='map' style='width: 100%; height: 300px;'></div>
 </div>
+
+<!-- calculates booking price dynamically -->
+<script type="text/javascript" >
+	window.onload = function() {
+		$(document).ready(function() {
+			$("#end").on("dp.hide", function(e) {
+				var start = new Date($("#start").val());
+				var end = new Date($("#end").val());
+				var nb_hours = (end - start)/(60 * 60 * 1000);
+				var total_price = nb_hours * (<%= @garden.price_per_hour %>)
+				$("#nb_hours").html(nb_hours);
+				$("#final_price").html(total_price);
+			});
+		});
+	}
+</script>
+
+<!-- end - price calculation -->
+
+
+<!-- adding a map -->
+<% content_for(:after_js) do %>
+  <script type="text/javascript" >
+    $(document).ready(
+      function() {
+      var handler = Gmaps.build('Google');
+      handler.buildMap({ provider: { scrollwheel: false, zoomControl: true }, internal: { id: 'map' } }, function() {
+        markers = handler.addMarkers(<%= raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        if (markers.length == 0) {
+          handler.getMap().setZoom(4);
+        } else if (markers.length == 1) {
+          handler.getMap().setZoom(14);
+        }
+      });
+    });
+  </script>
+<% end %>
+<!-- end map -->

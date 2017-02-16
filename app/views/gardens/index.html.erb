@@ -1,8 +1,8 @@
 <div class="index-container">
-  <div class="container" style="margin-left: 5px; margin-right: 0;">
+  <div class="container" id="no-margin-map-in-cont" style="margin-left: 5px; margin-right: 0;">
     <div class="row">
     <!-- Card -->
-      <div class="col-xs-12 col-sm-8">
+      <div class="col-xs-12 col-sm-7">
         <div class="row">
           <% @gardens.each do |garden| %>
           <div class="col-xs-12 col-sm-6">
@@ -26,9 +26,30 @@
         </div>
       </div>
       <!-- Map -->
-      <div class="col-xs-12 col-sm-4">
+      <div class="col-xs-12 col-sm-5">
+        <div id="map" style="width: auto; height: calc(100vh - 70px); margin-top: 0px; top: 0; position: fixed;" ></div>
+        <!-- <div id="map" style="width: auto; height: auto"> -->
+      </div> <!-- end of col xs-12 -->
+    </div> <!-- end of row -->
+  </div> <!-- end of container -->
+</div> <!-- end of index-container -->
 
-      </div>
-    </div>
-  </div>
-</div>
+
+<!-- adding a map -->
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+      var handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'map' } }, function() {
+        markers = handler.addMarkers(<%= raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        if (markers.length == 0) {
+          handler.getMap().setZoom(2);
+        } else if (markers.length == 1) {
+          handler.getMap().setZoom(14);
+        }
+      });
+    });
+  <% end %>
+<% end %>

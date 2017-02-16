@@ -1,2 +1,21 @@
 @import "home";
 @import "my_dashboard";
+@import "garden_show";
+
+.index-container {
+  display: flex;
+}
+
+.index-map {
+  width: auto;
+  height: calc(100vh - 70px);
+  margin-top: 0;
+  top: 0;
+  position: fixed;
+  flex-shrink: 1;
+}
+
+#no-margin-map-in-cont {
+  padding-right: 0px;
+  width: 100%;
+}

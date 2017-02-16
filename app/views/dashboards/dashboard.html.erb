@@ -43,6 +43,8 @@
             </thead>
             <tbody>
               <tr>
+          </div>
+
               <% current_user.gardens.each do |garden| %>
               <% garden.bookings.each do |booking| %>
               <% if booking.status == "pending" %>
@@ -53,6 +55,7 @@
               <td><%= booking.checkin_at.strftime("%A, %d %b %Y %l:%M %p") %></td>
               <td><%= booking.checkout_at.strftime("%A, %d %b %Y %l:%M %p")%></td>
               <td> € </td>
+
               <td align="center">
                 <%= link_to accept_garden_booking_path(booking.garden, booking), method: :patch, class: "btn btn-success" do %>
                 <em class="fa fa-thumbs-up"></em>
@@ -65,6 +68,7 @@
               <% end %>
               <% end %>
             </tr>
+
             </tbody>
           </table>
         </div>

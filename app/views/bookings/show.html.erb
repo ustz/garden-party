@@ -1,10 +1,10 @@
 <% if @booking.status == "pending" %>
-    <h1 class="text-center">Thank you, <%= current_user.first_name %>!</h1>
-    <h3 class="text-center">Your booking at <strong><%= link_to @garden.title, garden_path(@garden) %></strong> for <%= @booking.checkin_at.strftime('%b %d, %Y') %> was successfully registered! You will receive a confirmation email at <%= current_user.email %> once the owner confirmes your request</h3>
-    <div class="text-center"><%= cl_image_tag @garden.photo_url, height: 300, width: 400, crop: :fill %></div>
+	<h1 class="text-center">Thank you, <%= current_user.first_name %>!</h1>
+	<h3 class="text-center">Your booking at <strong><%= link_to @garden.title, garden_path(@garden) %></strong> for <%= @booking.checkin_at.strftime('%b %d, %Y') %> was successfully registered! You will receive a confirmation email at <%= current_user.email %> once the owner confirmes your request</h3>
+	<div class="text-center"><%= cl_image_tag @garden.photo_url, height: 300, width: 400, crop: :fill %></div>
 <% elsif @booking.status == "confirmed" %>
-    <h1 class="text-center">Congratulations, <%= current_user.first_name %>! Your booking is now confirmed!</h1>
+	<h1 class="text-center">Congratulations, <%= current_user.first_name %>! Your booking is now confirmed!</h1>
 <% else %>
-    <h1 class="text-center">Sorry, unfortunately your host could not honor your booking. Please choose another home</h1>
-    <div class="text-center"><%= link_to "Choose another home", gardens_path, class: "btn btn-info" %></div>
+	<h1 class="text-center">Sorry, unfortunately your host could not honor your booking. Please choose another home</h1>
+	<div class="text-center"><%= link_to "Choose another home", gardens_path, class: "btn btn-info" %></div>
  <% end %>
