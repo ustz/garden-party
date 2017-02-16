@@ -10,6 +10,7 @@ class BookingsController < ApplicationController
 		@booking.garden = @garden
 	    @booking.user = current_user
 	    @booking.status = "pending"
+	    @nb_hours = @booking.checkout_at - @booking.checkin_at
 	    if @booking.save
 	      redirect_to  garden_booking_path(@garden, @booking)
 	    else
