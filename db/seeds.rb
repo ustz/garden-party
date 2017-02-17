@@ -26,11 +26,20 @@ User.new(email: "nicolas@gmail.com", password: "aurelien", first_name: "Nicolas"
 User.new(email: "eytan@gmail.com", password: "aurelien", first_name: "Eytan", last_name: 'Messika', city: "Miami"),
 User.new(email: "benjamin@gmail.com", password: "aurelien", first_name: "Benjamin", last_name: 'Lambrou', city: "Marseilles")
 ]
-
 users.each do |user|
   user.save!
 end
 
+50.times do
+  User.create! \
+    email: Faker::Internet.email,
+    password: "test000",
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name ,
+    address: Faker::Address.city
+  end
+
+ # Gardens
 gardens = [
 Garden.new(title: "Amazing garden in center of Paris", description: "Lorem Hipster garden in center of Paris", address: "Rue du bac", city: "Paris", user: users[0], photo: "pix1.jpg", capacity: "Less than 10", size: 25, price_per_hour: 50, f_bbq: true),
 Garden.new(title: "Superb rooding in London", description: "Lorem super text", address: "5th Avenue", city: "New York",user: users[1], photo: "pix2.jpg", capacity: "More than 100", size: 25, price_per_hour: 50, f_bbq: true),
@@ -48,6 +57,27 @@ gardens.each do |garden|
   garden.save!
 end
 
+pix = ["pix1.jpg", "pix2.jpg", "pix3.jpg", "pix4.jpg", "pix5.jpg", "pix6.jpg", "pix7.jpg", "pix8.jpg", "pix9.jpg", "pix10.jpg",
+      "pix11.jpg", "pix12.jpg", "pix13.jpg", "pix14.jpg", "pix15.jpg", "pix16.jpg", "pix17.jpg", "pix18.jpg", "pix19.jpg", "pix20.jpg"
+      ]
+
+50.times do
+  Garden.create! \
+    title: ["Amazing garden in center of Paris", ""]
+    description: "Lorem Hipster garden in center of Paris",
+    address: Faker::Address.street_address,
+    city: Faker::Address.city,
+    # latitude: Faker::Address.latitude,
+    # longitude: Faker::Address.longitude,
+    user: User.find(random(1..60)),
+    photo: pix.sample,
+    capacity: [Garden::GCAPACITY],
+    size: random(1..1000),
+    price_per_hour: random(10..100000),
+    f_bbq: [true, false].sample,
+  end
+
+# bookings
 bookings = [
   Booking.new(user: users[1], garden: gardens[1], status: "confirmed", checkin_at: Date.today - 65, checkout_at: Date.today - 44, accepts: true),
   Booking.new(user: users[2], garden: gardens[2], status: "pending", checkin_at: Date.today - 20, checkout_at: Date.today - 12, accepts: true),
