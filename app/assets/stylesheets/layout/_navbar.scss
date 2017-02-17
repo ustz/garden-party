@@ -59,14 +59,14 @@
   border-radius: 20em;
   line-height: 40px;
   background-color: none;
-  color: #63194E;
+  color: $light-purple;
   font-size: 14px;
-  border: 1px solid #63194E;
+  border: 1px solid $light-purple;
   transition: all 0.4s ease;
 }
 .navbar-wagon-button:hover {
   color: white;
-  background: #63194E;
+  background: $light-purple;
 }
 
 /* Navbar search form */
