@@ -10,6 +10,6 @@
 	<br>
 	<div class="text-center"><%= link_to "Back dashboard", dashboard_path, class: "btn btn-info" %></div>
 <% else %>
-	<h1 class="text-center">Sorry, unfortunately your host could not honor your booking. Please choose another home</h1>
-	<div class="text-center"><%= link_to "Choose another home", gardens_path, class: "btn btn-info" %></div>
+	<h1 class="text-center">This booking at <strong><%= link_to @garden.title, garden_path(@garden) %></strong> for <%= @booking.checkin_at.strftime('%b %d, %Y') %> was cancelled. </h1>
+	<div class="text-center"><%= link_to "Back to your dashboard", dashboard_path, class: "btn btn-info" %></div>
  <% end %>

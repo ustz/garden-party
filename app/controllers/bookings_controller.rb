@@ -25,7 +25,7 @@ class BookingsController < ApplicationController
   def accept
     @booking.status = "confirmed"
     if @booking.save
-      redirect_to garden_booking_path(@garden, @booking)
+      redirect_to dashboard_path
     else
       render 'dashboard'
     end
