@@ -11,7 +11,7 @@ Garden.destroy_all
 User.destroy_all
 
 users = [
-User.new(email: "bob@gmail.com", password: "aurelien", first_name: "Bob", last_name: 'Robert', city: "Paris"),
+User.new(email: "jc@gmail.com", password: "aurelien", first_name: "jc", last_name: 'Dupont', city: "Paris"),
 User.new(email: "annie@gmail.com", password: "aurelien", first_name: "Annie", last_name: 'Tsang', city: "NYC"),
 User.new(email: "olga@gmail.com", password: "aurelien", first_name: "Olga", last_name: 'Starkova', city: "Londond"),
 User.new(email: "ulysse@gmail.com", password: "aurelien", first_name: "Ulysse", last_name: 'Schwartz', city: "Rio de Janeiro"),
@@ -26,28 +26,163 @@ User.new(email: "nicolas@gmail.com", password: "aurelien", first_name: "Nicolas"
 User.new(email: "eytan@gmail.com", password: "aurelien", first_name: "Eytan", last_name: 'Messika', city: "Miami"),
 User.new(email: "benjamin@gmail.com", password: "aurelien", first_name: "Benjamin", last_name: 'Lambrou', city: "Marseilles")
 ]
-
 users.each do |user|
   user.save!
 end
 
+50.times do
+  User.create! \
+    email: Faker::Internet.email,
+    password: "test000",
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name ,
+    city: Faker::Address.city
+  end
+
+ # Gardens
 gardens = [
-Garden.new(title: "Amazing garden in center of Paris", description: "Lorem Hipster garden in center of Paris", address: "Rue du bac", city: "Paris", user: users[0], photo: "pix1.jpg", capacity: "Less than 10", size: 25, price_per_hour: 50, f_bbq: true),
-Garden.new(title: "Superb rooding in London", description: "Lorem super text", address: "5th Avenue", city: "New York",user: users[1], photo: "pix2.jpg", capacity: "More than 100", size: 25, price_per_hour: 50, f_bbq: true),
-Garden.new(title: "Wonderful gardein in Buenos Aires", description: "Just amazing  loop", address: "Street lane", city: "London", user: users[2], photo: "pix3.jpg", capacity: "Less than 10", size: 25, price_per_hour: 50, f_bbq: true),
-Garden.new(title: "Jardim botanico no Rio de Janeiro", description: "Obabbaa loop", address: "Street lane", city: "Paris", user: users[3], photo: "pix4.jpg", capacity: "10 - 49", size: 25, price_per_hour: 50, f_bbq: true),
-Garden.new(title: "Jardin japonais tokyoite", description: "Zen, zen ...", address: "Okinawa street", city: "Tokyo", user: users[4], photo: "pix5.jpg", capacity: "10 - 49", size: 25, price_per_hour: 50, f_bbq: true),
-Garden.new(title: "Amazing garden in center of Paris", description: "Lorem Hipster garden in center of Paris", address: "Rue du bac", city: "Paris", user: users[0], photo: "pix6.jpg", capacity: "Less than 10", size: 25, price_per_hour: 50, f_bbq: true),
-Garden.new(title: "Superb rooding in London", description: "Lorem super text", address: "5th Avenue", city: "New York",user: users[1], photo: "pix7.jpg", capacity: "More than 100", size: 25, price_per_hour: 50, f_bbq: true),
-Garden.new(title: "Wonderful gardein in Buenos Aires", description: "Just amazing  loop", address: "Street lane", city: "London", user: users[2], photo: "pix8.jpg", capacity: "50 - 100", size: 25, price_per_hour: 50, f_bbq: true),
-Garden.new(title: "Jardim botanico no Rio de Janeiro", description: "Obabbaa loop", address: "Street lane", city: "Paris", user: users[3], photo: "pix9.jpg", capacity: "More than 100", size: 25, price_per_hour: 50, f_bbq: true),
-Garden.new(title: "Jardin japonais tokyoite", description: "Zen, zen ...", address: "Okinawa street", city: "Tokyo", user: users[4], photo: "pix10.jpg", capacity: "Less than 10", size: 25, price_per_hour: 50, f_bbq: true)
+Garden.new(title: "Garden in little Paris",
+  description: "Beaufiful garden in center of the city. You'll be more than welcone to enjoy this little space of paradise with your friends",
+  address: "2, Rue du bac",
+  city: "Paris",
+  latitude: 48.8587026,
+  longitude: 2.3286752999999862,
+  user: users[0],
+  # photo: "app/assets/images/pix1.jpg",
+  capacity: "Less than 10", size: 25, price_per_hour: 50, f_bbq: [true, false].sample, f_wc: [true, false].sample, f_parking: [true, false].sample, f_pool: [true, false].sample, f_wifi: [true, false].sample, f_lights: [true, false].sample, f_music: [true, false].sample),
+Garden.new(title: "Superb rooftop in Paris",
+  description: "Cute and cosy",
+  address: "17 villa gaudelet",
+  city: "Paris",
+  latitude: 48.8648505,
+  longitude: 2.380231600000002,
+  user: users[6],
+  # photo: "app/assets/images/pix2.jpg",
+  capacity: "50 - 100",
+  size: 25,
+  price_per_hour: 30,
+  f_bbq: [true, false].sample, f_wc: [true, false].sample, f_parking: [true, false].sample, f_pool: [true, false].sample, f_wifi: [true, false].sample, f_lights: [true, false].sample, f_music: [true, false].sample),
+Garden.new(title: "Wonderful garden", description: "Just amazing  loop",
+  address: "12 rue Boissonade",
+  city: "Paris",
+  latitude: 48.8398947,
+  longitude: 2.333527799999956,
+  user: users[2],
+  # photo: "app/assets/images/pix3.jpg",
+  capacity: "Less than 10",
+  size: 25,
+  price_per_hour: 45,
+  f_bbq: [true, false].sample, f_wc: [true, false].sample, f_parking: [true, false].sample, f_pool: [true, false].sample, f_wifi: [true, false].sample, f_lights: [true, false].sample, f_music: [true, false].sample),
+Garden.new(title: "Jardim botanico no Rio de Janeiro",
+  description: "Book the place and it will be yours. Please ask if you have any questions",
+  address: "Jadim botanico",
+  city: "Rio de Janeiro",
+  latitude: -22.9641719,
+  longitude: -43.22277280000003,
+  user: users[3],
+  # photo: "app/assets/images/pix4.jpg",
+  capacity: "10 - 49", size: 25, price_per_hour: 50, f_bbq: [true, false].sample, f_wc: [true, false].sample, f_parking: [true, false].sample, f_pool: [true, false].sample, f_wifi: [true, false].sample, f_lights: [true, false].sample, f_music: [true, false].sample),
+Garden.new(title: "Jardin japonais kyotoite",
+  description: "Zen, zen, just book and enjoy the charming place",
+  address: "Higashi Oji Dori, Saikaishichō, Higashiyama-ku, Kyōto-shi, Kyōto-fu 605-0012",
+  city: "Tokyo",
+  latitude: 35.00933067288416,
+  longitude: 135.77816247940063,
+  user: users[4],
+  # photo: "app/assets/images/pix5.jpg",
+  capacity: "10 - 49", size: 25, price_per_hour: 50, f_bbq: [true, false].sample, f_wc: [true, false].sample, f_parking: [true, false].sample, f_pool: [true, false].sample, f_wifi: [true, false].sample, f_lights: [true, false].sample, f_music: [true, false].sample),
+Garden.new(title: "Amazing garden in center of Paris",
+  description: "Book it for 1h, 1 day or any duration",
+  address: "Jardin du Luxembourg",
+  city: "Paris",
+  latitude: 48.8462217,
+  longitude: 2.3371604999999818,
+  user: users[0],
+  # photo: "app/assets/images/pix6.jpg",
+  capacity: "Less than 10",
+  size: 38, price_per_hour: 50, f_bbq: [true, false].sample, f_wc: [true, false].sample, f_parking: [true, false].sample, f_pool: [true, false].sample, f_wifi: [true, false].sample, f_lights: [true, false].sample, f_music: [true, false].sample),
+Garden.new(title: "Superb rooftoop in the Heart of London",
+  description: "Cosy and amazing, book it for 1 day, 1 night or any duratin you ll like",
+  address: "Jeeley Street",
+  city: "London",
+  latitude: 51.514992241447835,
+  longitude:-0.1196908950805664,
+  user: users[1],
+  # photo: "app/assets/images/pix7.jpg",
+  capacity: "More than 100",
+  size: 65, price_per_hour: 50, f_bbq: [true, false].sample, f_wc: [true, false].sample, f_parking: [true, false].sample, f_pool: [true, false].sample, f_wifi: [true, false].sample, f_lights: [true, false].sample, f_music: [true, false].sample),
+Garden.new(title: "Wonderful garden in Buenos Aires",
+  description: "Just amazing  loop",
+  address: "Brick lane",
+   city: "London",
+  latitude: 51.5220063,
+  longitude: -0.07170429999996486,
+   user: users[2],
+   # photo: "app/assets/images/pix8.jpg",
+   capacity: "50 - 100", size: 25, price_per_hour: 50, f_bbq: [true, false].sample, f_wc: [true, false].sample, f_parking: [true, false].sample, f_pool: [true, false].sample, f_wifi: [true, false].sample, f_lights: [true, false].sample, f_music: [true, false].sample),
+Garden.new(title: "Jardim en Bogoto",
+  description: "Beaufiful garden in center of the city. You'll be more than welcone to enjoy this little space of paradise with your friends",
+  address: "Calle Maracaibo",
+  city: "Bogota",
+  latitude: 4.711977106746532,
+  longitude: -74.06890153884888,
+  user: users[3],
+  # photo: "app/assets/images/pix9.jpg",
+  capacity: "More than 100", size: 25, price_per_hour: 50, f_bbq: [true, false].sample, f_wc: [true, false].sample, f_parking: [true, false].sample, f_pool: [true, false].sample, f_wifi: [true, false].sample, f_lights: [true, false].sample, f_music: [true, false].sample),
+Garden.new(title: "Japanse garden in Okinawa",
+  description: "One of the most charming gardin in town",
+  address: "Okinawa",
+  city: "Okinawa",
+  latitude: 26.212800698391643,
+  longitude: 127.67466187477112,
+  user: users[4],
+  # photo: "app/assets/images/pix10.jpg",
+  capacity: "Less than 10", size: 25, price_per_hour: 50, f_bbq: [true, false].sample, f_wc: [true, false].sample, f_parking: [true, false].sample, f_pool: [true, false].sample, f_wifi: [true, false].sample, f_lights: [true, false].sample, f_music: [true, false].sample)
 ]
 
 gardens.each do |garden|
   garden.save!
 end
 
+titles = ["Amazing garden ", "Beautifil rooftoop", "Wonderful garden",
+"Sweet little paradise", "Cute and cosy", "Big House in the forrest", "Garden in the city",
+"Perfect for a party", "Come over and enjoy"
+]
+
+pix = ["pix1.jpg", "pix2.jpg", "pix3.jpg", "pix4.jpg", "pix5.jpg", "pix6.jpg", "pix7.jpg", "pix8.jpg", "pix9.jpg", "pix10.jpg",
+"pix11.jpg", "pix12.jpg", "pix13.jpg", "pix14.jpg", "pix15.jpg", "pix16.jpg", "pix17.jpg", "pix18.jpg", "pix19.jpg", "pix20.jpg"
+]
+
+desc = ["Beaufiful garden in center of the city. You'll be more than welcone to enjoy this little space of paradise with your friends",
+"Enjoy the place without having the need of planing anything. We ll be in charge of everything if you want to plan your next event over here",
+"Cosy and amazing, book it for 1 day, 1 night or any duratin you ll like",
+"Book the place and it will be yours. Please ask if you have any questions"
+]
+
+50.times do
+  Garden.create! \
+    title: titles.sample ,
+    description: desc.sample,
+    address: Faker::Address.street_address,
+    city: Faker::Address.city,
+    # latitude: Faker::Address.latitude,
+    # longitude: Faker::Address.longitude,
+    user: User.first,
+    # user: users[1],
+    # photo: 'app/assets/images/' + pix.sample,
+    capacity: Garden::GCAPACITY.sample,
+    size: rand(1..1000),
+    price_per_hour: rand(10..100000),
+    f_bbq: [true, false].sample,
+    f_wc: [true, false].sample,
+    f_parking: [true, false].sample,
+    f_pool: [true, false].sample,
+    f_wifi: [true, false].sample,
+    f_lights: [true, false].sample,
+    f_music: [true, false].sample
+end
+
+# bookings
 bookings = [
   Booking.new(user: users[1], garden: gardens[1], status: "confirmed", checkin_at: Date.today - 65, checkout_at: Date.today - 44, accepts: true),
   Booking.new(user: users[2], garden: gardens[2], status: "pending", checkin_at: Date.today - 20, checkout_at: Date.today - 12, accepts: true),

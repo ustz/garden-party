@@ -36,12 +36,12 @@
   color: white;
   font-size: 30px;
   position: absolute;
-  top: 30px;
-  right: 30px;
-  transition: all 0.4s ease;
-  &:hover {
-    transform: scale(1.1);
-  }
+  top: 15px;
+  right: 15px;
+  // transition: all 0.4s ease;
+  // &:hover {
+  //   transform: scale(1.1);
+  // }
 }
 
 .card-user {
@@ -61,6 +61,7 @@
   bottom: 10px;
   right: 10px;
   text-align: right;
+  color: white;
 }
 .card-description h2 {
   font-size: 24px;

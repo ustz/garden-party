@@ -10,6 +10,7 @@ class GardensController < ApplicationController
 
   def index
     @gardens = Garden.where('city = ? AND capacity = ?', params[:search][:city], params[:search][:capacity])
+    @gardens = Garden.all if params[:search][:city] == "" && params[:search][:capacity] == ""
     @hash = Gmaps4rails.build_markers(@gardens) do |garden, marker|
       if garden.latitude
         marker.lat garden.latitude
@@ -19,6 +20,7 @@ class GardensController < ApplicationController
       # @garden_coordinates = { lat: @garden.latitude, lng: @garden.longitude }
     end
   end
+
 
   def create
     size = garden_params[:size].to_i
@@ -84,6 +86,17 @@ class GardensController < ApplicationController
       # @garden_coordinates = { lat: @garden.latitude, lng: @garden.longitude }
     end
     @booking = Booking.new
+  end
+
+  def edit
+  end
+
+  def update
+    if @garden.update(garden_params)
+      redirect_to garden_path(@garden)
+    else
+      render :edit
+    end
   end
 
   def destroy
