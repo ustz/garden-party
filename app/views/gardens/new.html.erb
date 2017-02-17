@@ -1,21 +1,51 @@
-<div class='container'>
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 col sm-offset-3">
-      <h1>Register your garden:</h1>
-      <%= simple_form_for(@garden) do |f|%>
-        <%= f.error_notification %>
-        <%= f.input :title, placeholder: "Magnificent garden in the heart of Latin Quarter"%>
-        <%= f.input :description, placeholder: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius, aut minima odit."%>
-        <%= f.input :address, placeholder: "5 avenue Kléber"%>
-        <%= f.input :city, placeholder: "Paris"%>
-        <%= f.input :capacity, collection: ["Less than 10", "10 - 49", "50 - 100", "More than 100"] %>
-        <%= f.input :size, as: :numeric, label: "Size (sq.m)" %>
-        <%= f.input :photo %>
-        <%= f.input :photo_cache, as: :hidden %>
-        <%= f.input :price_per_hour, as: :numeric, label: "Price per hour (in €)" %>
-        <%= f.input :f_bbq, label: "Barbecue", as: :radio_buttons %>
-        <%= f.submit %>
+<div id="form-wrapper">
+  <div class='container'>
+  <h1 style="margin-bottom: 10px">Register your garden:</h1>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <%= simple_form_for(@garden) do |f|%>
+            <%= f.error_notification %>
+            <%= f.input :title, placeholder: "Magnificent garden in the heart of Latin Quarter"%>
+            <%= f.input :description, as: :text, input_html: {rows: 8}, placeholder: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius, aut minima odit." %>
+            <%= f.input :address, placeholder: "5 avenue Kléber"%>
+            <%= f.input :city, placeholder: "Paris"%>
+            <%= f.input :capacity, collection: ["Less than 10", "10 - 49", "50 - 100", "More than 100"] %>
+            <%= f.input :size, as: :numeric, label: "Size (sq.m)" %>
+            <%= f.input :price_per_hour, as: :numeric, label: "Price per hour (in €)" %>
+            <div class='top-space'>
+              <div class="col-xs-12 col-sm-4">
+                <label for="f_bbq" class='icon-label'><i class="fa fa-fire"></i> Barbecue</label>
+                <%= f.input :f_bbq, label: false, as: :radio_buttons %>
+                <label for="f_wifi" class='icon-label'><i class="fa fa-fire"></i> Wi-Fi</label>
+                <%= f.input :f_wifi, label: false, as: :radio_buttons %>
+              </div>
+              <div class="col-xs-12 col-sm-4">
+                <label for="f_pool" class='icon-label'><i class="fa fa-fire"></i> Swimming pool</label>
+                <%= f.input :f_pool, label: false, as: :radio_buttons %>
+                <label for="f_parking" class='icon-label'><i class="fa fa-fire"></i> Parking</label>
+                <%= f.input :f_parking, label: false, as: :radio_buttons %>
+              </div>
+              <div class="col-xs-12 col-sm-4">
+                <label for="f_music" class='icon-label'><i class="fa fa-fire"></i> Sound system</label>
+                <%= f.input :f_music, label: false, as: :radio_buttons %>
+                <label for="f_wc" class='icon-label'><i class="fa fa-fire"></i> Handicap Access</label>
+                <%= f.input :f_wc, label: false, as: :radio_buttons %>
+              </div>
+            </div>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <div id='photo-block' class='spacer'>
+          <p style="font-weight: bold"> Photo </p>
+          <%= image_tag 'http://placehold.it/500x400' %>
+          <%= f.input :photo, label: false %>
+          <%= f.input :photo_cache, as: :hidden %>
+          <div class='submit-button'>
+            <%= f.submit "Create new garden", class: 'principal-btn' %>
+          </div>
+        </div>  
+      </div>
       <% end %>
     </div>
   </div>
 </div>
+

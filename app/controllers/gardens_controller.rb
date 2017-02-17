@@ -27,6 +27,45 @@ class GardensController < ApplicationController
     @garden.size = size
     @garden.price_per_hour = price_per_hour
     @garden.user = current_user
+    if garden_params[:f_bbq] == "true"
+      @garden.f_bbq = true
+    else
+      @garden.f_bbq = false
+    end
+
+
+    if garden_params[:f_pool] == "true"
+      @garden.f_pool = true
+    else
+      @garden.f_pool = false
+    end
+
+    if garden_params[:f_wifi] == "true"
+      @garden.f_wifi = true
+    else
+      @garden.f_wifi = false
+    end
+
+
+    if garden_params[:f_music] == "true"
+      @garden.f_music = true
+    else
+      @garden.f_music = false
+    end
+
+    if garden_params[:f_parking] == "true"
+      @garden.f_parking = true
+    else
+      @garden.f_parking = false
+    end
+
+    if garden_params[:f_wc] == "true"
+      @garden.f_wc = true
+    else
+      @garden.f_wc = false
+    end
+
+
     if @garden.save
       redirect_to edit_user_path(current_user)
     else

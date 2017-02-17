@@ -55,7 +55,7 @@
                 <% else %>
                   <%= image_tag @garden.user.facebook_picture_url, class: "avatar-large" %>
                 <% end %>
-                <p><%= @garden.user.first_name %></p>
+                <p><%= @garden.user.first_name %> </p>
               </div>
             </div>
           </div>
@@ -87,8 +87,8 @@
         <h2>Book a garden</h2>
          <%= simple_form_for [@garden, @booking] do |f| %>
          <%= f.error_notification %>
-         <%= f.input :checkin_at, as: :string, input_html: { class: "datetimepicker", id: "start" }, label: false, placeholder: 'Checkin'  %>
-         <%= f.input :checkout_at, as: :string, input_html: { class: "datetimepicker", id: "end" }, label: false, placeholder: 'Checkout' %>
+         <%= f.input :checkin_at, as: :string, input_html: { class: "datetimepicker", id: "start" }, label: false, placeholder: 'Arrival time'  %>
+         <%= f.input :checkout_at, as: :string, input_html: { class: "datetimepicker", id: "end" }, label: false, placeholder: 'Departure time' %>
          <strong>Price per hour:</strong> <%= @garden.price_per_hour%> EUR <br>
          <strong>Number of hours:</strong>  <span id = "nb_hours"> hours </span> <br>
          <strong>Final price:</strong>  <span id = "final_price"> EUR </span>
