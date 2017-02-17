@@ -9,13 +9,8 @@ class GardensController < ApplicationController
   end
 
   def index
-    if params[:search].blank?
-      @gardens = Garden.all
-    elsif params[:search][:city] && params[:search][:capacity]
-      @gardens = Garden.where('city = ? AND capacity = ?', params[:search][:city], params[:search][:capacity])
-    else
-      @gardens = Garden.all
-    end
+    @gardens = Garden.where('city = ? AND capacity = ?', params[:search][:city], params[:search][:capacity])
+    @gardens = Garden.all if params[:search][:city] == "" && params[:search][:capacity] == ""
     @hash = Gmaps4rails.build_markers(@gardens) do |garden, marker|
       if garden.latitude
         marker.lat garden.latitude
