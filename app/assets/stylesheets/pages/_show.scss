@@ -1,0 +1,41 @@
+.pic-wrapper {
+  position: cover !important;
+}
+
+.owner-pic {
+  background: cover !important;
+  height: 50vh;
+  background-position: center;
+}
+
+.header-flat {
+  margin: 50px 0;
+}
+
+.header-flat-details {
+  display: flex;
+  align-items: center;
+  h1 {
+    font-size: 20px;
+  }
+  p {
+    font-size: 15px;
+    color: #777777;
+  }
+}
+
+.header-flat-owner {
+  margin: 30px 15px 15px 15px;
+}
+
+#flat-description {
+  background-color: #F4F4F4;
+  padding: 30px 0;
+  border-top: 1px solid #999999;
+}
+
+#show-form {
+  background-color: #F4F4F4;
+  padding: 20px;
+  border-radius: 4px;
+}

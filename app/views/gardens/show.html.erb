@@ -1,62 +1,123 @@
-<div class="container show-container">
-  <div class="title">
-    <h1 style="margin: 12px 0;"> <%= @garden.title %></h1>
-    <%= link_to "Back", :back, class: "btn btn-info" %>
+<!-- Photo banner  -->
+<% if @garden.photo_url.nil? %>
+  <div class="garden-show-banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path 'http://placehold.it/400x300' %>')">
   </div>
-  <div class="row" style="margin-bottom: 20px;">
-    <div class="col-xs-12 col-sm-8">
-      <% if @garden.photo_url %>
-      <%= cl_image_tag @garden.photo_url, height: 300, width: 400, crop: :fill, class: 'photo' %>
-      <% else %>
-      <%= image_tag 'http://placehold.it/400x300', class: 'photo'%>
-      <% end %>
+<% else %>
+  <div class="garden-show-banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= cl_image_path @garden.photo, height: 300, width: 400, crop: :fill %>')">
+  </div>
+<% end %>
 
-      
+<!-- Fin de photo banner  -->
 
-      <p><strong>City: </strong> <%= @garden.city %></p>
-      <p><strong>Address: </strong><%= @garden.address %></p>
-      <p><strong>Description:</strong> <%= @garden.description %></p>
-      <p><strong>Size: </strong><%= @garden.size %> m2</p>
-      <p><strong>Price per hour: </strong><%= @garden.price_per_hour %> euros</p>
-      <p><strong>Features: </strong></p>
-
-      <!-- end of col-xs-12 -->
+<!-- Bandeau noir -->
+<div class="description-wrapper">
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-1">
+        <h2 style="margin-left: 15px;"><%= @garden.title %></h2>
+      </div>
     </div>
-
-
-    <div class="col-xs-12 col-sm-4 booking-form">
-    <h2>Create booking:</h2>
-     <%= simple_form_for [@garden, @booking] do |f| %>
-     <%= f.error_notification %>
-     <%= f.input :checkin_at, as: :string, input_html: { class: "datetimepicker", id: "start" }  %>
-     <%= f.input :checkout_at, as: :string, input_html: { class: "datetimepicker", id: "end" } %>
-     <strong>Price per hour:</strong> <%= @garden.price_per_hour%> EUR <br>
-     <strong>Number of hours:</strong>  <div id = "nb_hours"> hours </div>
-     <strong>Final price:</strong>  <div id = "final_price"> EUR </div>
-     <br>
-     <br>
-     <%= f.input :accepts, label: "I have read and agree to the Terms and Conditions ", as: :boolean, checked_value: true, unchecked_value: false %>
-     <%= f.submit "Book this garden", class: 'btn btn-primary'%>
-     <% end %>
-   </div>
- </div>
- <div id='map' style='width: 100%; height: 300px;'></div>
+    <div class="icon-container">
+        <div class="text-center">
+            <i class="fa fa-map-marker fa-2x" aria-hidden="true"></i>
+            <p><%= @garden.city %></p>
+        </div>
+        <div class="text-center">
+            <i class="fa fa-users fa-2x" aria-hidden="true"></i>
+            <p><%= @garden.capacity %> persons</p>
+        </div>
+        <div class="text-center">
+            <i class="fa fa-arrows-alt fa-2x" aria-hidden="true"></i>
+            <p><%= @garden.size %> sq m</p>
+        </div>
+        <div class="text-center">
+            <i class="fa fa-eur fa-2x" aria-hidden="true"></i>
+            <p><%= @garden.price_per_hour %> €</p>
+        </div>
+    </div>
 </div>
+<!-- Fin de bandeau noir -->
+
+<!-- amenities integration -->
+<div id="flat-description">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-sm-offset-1">
+        <div class="row">
+          <div class="col-xs-12 col-sm-6">
+            <h3 id="about">About this garden</h3>
+            <p id='description'><%= @garden.description %></p>
+          </div>
+          <div class="col-xs-12 col-sm-1 col-sm-offset-4">
+            <div class="header-flat-details">
+              <div class="header-flat-owner text-center">
+                <% if @garden.user.facebook_picture_url.nil? %>
+                  <%= image_tag 'http://placehold.it/50x50', class: 'avatar-large'%>
+                <% else %>
+                  <%= image_tag @garden.user.facebook_picture_url, class: "avatar-large" %>
+                <% end %>
+                <p><%= @garden.user.first_name %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="row" id="flat-data">
+          <div class="col-xs-12 col-sm-3">
+            <strong>Amenities</strong>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <ul class="list-unstyled">
+              <li><i class="fa fa-fire"></i> Bbq</li>
+              <li><i class="fa fa-wifi"></i> Wifi</li>
+              <li><i class="fa fa-music"></i> Soundsystem</li>
+            </ul>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <ul class="list-unstyled">
+              <li><i class="fa fa-cutlery"></i> Table</li>
+              <li><i class="fa fa-glass"></i> Welcome drink</li>
+              <li><i class="fa fa-cloud"></i> Weather protection solutions</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="col-sm-1"></div>
+        <div class="col-xs-12 col-sm-3 col-sm-offset-2 booking-form">
+        <h2>Book a garden</h2>
+         <%= simple_form_for [@garden, @booking] do |f| %>
+         <%= f.error_notification %>
+         <%= f.input :checkin_at, as: :string, input_html: { class: "datetimepicker", id: "start" }, label: false, placeholder: 'Checkin'  %>
+         <%= f.input :checkout_at, as: :string, input_html: { class: "datetimepicker", id: "end" }, label: false, placeholder: 'Checkout' %>
+         <strong>Price per hour:</strong> <%= @garden.price_per_hour%> EUR <br>
+         <strong>Number of hours:</strong>  <span id = "nb_hours"> hours </span> <br>
+         <strong>Final price:</strong>  <span id = "final_price"> EUR </span>
+         <br>
+         <%= f.input :accepts, label: "I have read and agree to the Terms and Conditions ", as: :boolean, checked_value: true, unchecked_value: false %>
+         <%= f.submit "Book this garden", class: 'principal-btn'%>
+         <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End amenities integration -->
 
 <!-- calculates booking price dynamically -->
 <script type="text/javascript" >
-	window.onload = function() {
-		$(document).ready(function() {
-			$("#end").on("dp.hide", function(e) {
-				var start = new Date($("#start").val());
-				var end = new Date($("#end").val());
-				var nb_hours = (end - start)/(60 * 60 * 1000);
-				var total_price = nb_hours * (<%= @garden.price_per_hour %>)
-				$("#nb_hours").html(nb_hours);
-				$("#final_price").html(total_price);
-			});
-		});
-	}
+  window.onload = function() {
+    $(document).ready(function() {
+      $("#end").on("dp.hide", function(e) {
+        var start = new Date($("#start").val());
+        var end = new Date($("#end").val());
+        var nb_hours = (end - start)/(60 * 60 * 1000);
+        var total_price = nb_hours * (<%= @garden.price_per_hour %>)
+        $("#nb_hours").html(nb_hours);
+        $("#final_price").html(total_price);
+      });
+    });
+  }
 </script>
 
 <!-- end - price calculation -->
@@ -82,3 +143,7 @@
   </script>
 <% end %>
 <!-- end map -->
+
+<!-- Map -->
+<div id='map' style='width: 100%; height: 300px;'></div>
+<!-- end Map -->

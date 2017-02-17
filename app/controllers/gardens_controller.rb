@@ -47,10 +47,12 @@ class GardensController < ApplicationController
     @booking = Booking.new
   end
 
-
   def destroy
-    @garden.delete
-    redirect_to edit_user_path
+    @garden.bookings.each do |booking|
+      booking.destroy
+    end
+    @garden.destroy
+    redirect_to edit_user_path(current_user)
   end
 
   private

@@ -22,50 +22,36 @@
   margin-top: 0;
 }
 
-
 .description-wrapper {
-  background-color: black;
-  min-height: 200px;
-  color: white;
-  padding: 30px 50px;
-  >h1 {
-    font-size: 28px;
-  }
+ background-color: #6A6A6A;
+ min-height: 200px;
+ color: white;
+ padding: 10px 50px;
+ >h1 {
+   font-size: 28px;
+ }
 }
 
 .icon-container {
-  display: flex;
-  align: flex-start;
-  justify-content: space-around;
-  margin-top: 30px;
-  > div {
-    flex: 0 0 15%;
-    > p {
-      margin-top: 10px;
-      font-size: .8em;
-    }
-  }
+ display: flex;
+ align: flex-start;
+ justify-content: space-around;
+ margin-top: 30px;
+ > div {
+   flex: 0 0 15%;
+   > p {
+     margin-top: 10px;
+     font-size: 14px;
+   }
+ }
 }
 
-
-.garden-description {
-  margin: 20px 40px;
-
+#about {
+  font-size: 22px;
+  font-weight: bold;
 }
 
-.amenities-container {
-  height: 150px;
-  padding: 30px 50px;
-  background-color: #FFFFFF;
-  display: flex;
-  align: flex-start;
-  justify-content: space-around;
-  margin-top: 20px;
-  > div {
-    flex: 0 0 15%;
-    > ul {
-
-      font-size: .8em;
-    }
-  }
+#description {
+  margin-bottom: 20px;
 }
+
