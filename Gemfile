@@ -41,6 +41,10 @@ group :development, :test do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+
+# GEM FOR EMAIL
+gem "letter_opener", group: :development
+
 # GEM FOR DATEPICKER that cannot manage time
  # source "https://rails-assets.org" do
 #   gem 'rails-assets-bootstrap-datepicker'
