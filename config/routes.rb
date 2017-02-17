@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   get 'dashboard' => "dashboards#dashboard"
-  resources :gardens, only: [:index, :edit, :show, :new, :create, :destroy] do
+  resources :gardens, only: [:index, :edit, :show, :new, :create, :edit, :update, :destroy] do
   	resources :bookings, only: [:create, :show] do
   		member do
 	  		patch 'accept', to: "bookings#accept"
