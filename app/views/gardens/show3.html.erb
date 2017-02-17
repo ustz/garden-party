@@ -1,0 +1,66 @@
+<div class="garden-show-banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= cl_image_path @garden.photo, height: 300, width: 400, crop: :fill %>')">
+</div>
+<div class="description-wrapper">
+	<h1><%= @garden.title %></h1>
+	<div class="icon-container">
+		<div class="text-center">
+			<%= image_tag "pin.png" %>
+			<p><%= @garden.city %></p>
+		</div>
+		<div class="text-center">
+			<%= image_tag "capacity.png" %>
+			<p><%= @garden.capacity %> persons</p>
+		</div>
+		<div class="text-center">
+			<%= image_tag "size.png" %>
+			<p><%= @garden.size %> sq m</p>
+		</div>
+		<div class="text-center">
+			<%= image_tag "capacity.png" %>
+			<p><%= @garden.price_per_hour %> €</p>
+		</div>
+	</div>
+</div>
+
+<div class="garden-description">
+	<%= @garden.title %>
+	<%= @garden.description %>
+</div>
+
+<div class="amenities-container">
+	<div>
+		<ul class="list-unstyled">
+			<li>
+				<%= image_tag "capacity.png" %>  Barbecue
+			</li>
+		</ul>
+		<ul class="list-unstyled">
+			<li>
+				<%= image_tag "capacity.png" %> Pool
+			</li>
+		</ul>
+		<ul class="list-unstyled">
+			<li>
+				<%= image_tag "music-note" %> Music
+			</li>
+		</ul>
+	</div>
+	<div>
+		<ul class="list-unstyled">
+			<li>
+				<%= image_tag "capacity.png" %> Fairy lights
+			</li>
+		</ul>
+		<ul class="list-unstyled">
+			<li>
+				<%= image_tag "capacity.png" %> Wi-Fi
+			</li>
+		</ul>
+		<ul class="list-unstyled">
+			<li>
+				<%= image_tag "capacity.png" %> Parking</i>
+			</li>
+		</ul>
+	</div>
+</div>
+

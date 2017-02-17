@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170216142021) do
+ActiveRecord::Schema.define(version: 20170216174506) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,12 @@ ActiveRecord::Schema.define(version: 20170216142021) do
     t.string   "city"
     t.float    "latitude"
     t.float    "longitude"
+    t.boolean  "f_wc"
+    t.boolean  "f_parking"
+    t.boolean  "f_pool"
+    t.boolean  "f_wifi"
+    t.boolean  "f_lights"
+    t.boolean  "f_music"
     t.index ["user_id"], name: "index_gardens_on_user_id", using: :btree
   end
 

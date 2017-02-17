@@ -47,14 +47,9 @@ class GardensController < ApplicationController
     @booking = Booking.new
   end
 
-<<<<<<< HEAD
-  def destroy
-    @garden
-=======
 
   def destroy
     @garden.delete
->>>>>>> master
     redirect_to edit_user_path
   end
 
