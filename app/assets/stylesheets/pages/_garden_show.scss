@@ -12,8 +12,8 @@
 }
 
 .booking-form {
-  background-color: #F7F7F9;
-  padding: 15px 15px;
+  background-color: white;
+  padding: 15px 15px 25px 15px;
   margin: 0 -15px 0 -15px;
   border-radius: 3px;
 }
@@ -23,12 +23,21 @@
 }
 
 .description-wrapper {
- background-color: #6A6A6A;
- min-height: 200px;
+ background-color: rgba(106, 106, 106, 0.7);
+ // opacity: 1;
+ min-height: 150px;
+ width: 100%;
+ position: absolute;
+ bottom: 0px;
  color: white;
  padding: 10px 50px;
  >h1 {
    font-size: 28px;
+ }
+ h2 {
+  margin-bottom: 0;
+  margin-top: 7px;
+
  }
 }
 
@@ -36,7 +45,7 @@
  display: flex;
  align: flex-start;
  justify-content: space-around;
- margin-top: 30px;
+ margin-top: 20px;
  > div {
    flex: 0 0 15%;
    > p {
