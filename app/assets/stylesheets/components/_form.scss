@@ -1,7 +1,19 @@
+#page {
+  background-color: #F5F4F4;
+  padding-top: 15px;
+}
+
+
+#form-wrapper {
+  background-color: white;
+  width: 80%;
+  margin: 0 auto;
+}
+
 .form-container {
   background-color: #F5F4F4;
   padding: 15px 30px 30px 30px;
-  width: 700px;
+  width: 90%;
   margin-top: 5px;
 }
 
@@ -14,9 +26,29 @@
   padding: 5px 0;
 }
 
+#photo-block {
+    padding-left: 3rem;
+    margin-right: 23px;
+  img {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+
+.submit-button {
+  display: flex;
+  margin-top: 200px;
+  justify-content: space-around;
+  .principal-btn {
+    flex: 0 0 50%;
+  }
+}
+
 .sign-form {
   background-color: #F5F4F4;
   border-radius: 3px;
   margin-top: 8px;
   padding: 0px 20px 15px 20px;
 }
+
