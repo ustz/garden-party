@@ -36,15 +36,15 @@
                 </div>
                 <div class="card-description">
                   <h2><%= garden.title %></h2>
-                  <p><%= garden.description %></p>
+                  <p><%= garden.capacity %> persons</p>
                 </div>
-              </div>
-            <% end %>
                     <%= link_to garden_path(garden), method: :delete, data: { confirm: "Are you sure?" } do   %>
                      <div class="card-trash">
                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                     </div>
                     <% end %>
+              </div>
+            <% end %>
           </div>
         <% end %>
 

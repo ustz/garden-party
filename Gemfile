@@ -20,6 +20,7 @@ gem 'simple_form'
 gem 'autoprefixer-rails'
 gem 'carrierwave'
 gem 'cloudinary', '1.1.0'
+gem 'faker'
 
 # gem files for Gmaps (display and autocomplete)
 gem 'geocoder'
