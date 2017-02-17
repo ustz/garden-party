@@ -1,11 +1,19 @@
+#page {
+  background-color: #F5F4F4;
+  padding-top: 15px;
+}
+
+
 #form-wrapper {
   background-color: white;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .form-container {
   background-color: #F5F4F4;
   padding: 15px 30px 30px 30px;
-  width: 700px;
+  width: 90%;
   margin-top: 5px;
 }
 
@@ -19,7 +27,8 @@
 }
 
 #photo-block {
-  padding-left: 8rem;
+    padding-left: 3rem;
+    margin-right: 23px;
   img {
     width: 100%;
     margin-bottom: 20px;
