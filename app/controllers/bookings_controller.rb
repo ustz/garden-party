@@ -13,7 +13,7 @@ class BookingsController < ApplicationController
     @booking.length = (@booking.checkout_at - @booking.checkin_at)/(60 * 60)
     @booking.total_price = @booking.length * @garden.price_per_hour
     if @booking.save
-      redirect_to  garden_booking_path(@garden, @booking)
+      redirect_to  dashboard_path
     else
       render 'gardens/show'
     end
